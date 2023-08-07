@@ -1,8 +1,7 @@
 # sec_c_sec_c_prathiusha.sakthivel__corejava_project_2
 
----------------------------------------------------------------------
 | Column Name         | Data Type         | Constraints             |
----------------------------------------------------------------------
+|---------------------|-------------------|-------------------------|
 | ProductId           | SERIAL            | PRIMARY KEY             |
 | ProductName         | VARCHAR(50)       |                         |
 | ProductImageUrl     | VARCHAR(200)      |                         |
@@ -12,4 +11,4 @@
 | ProductDescription  | VARCHAR(800)      |                         |
 | ProductCategory     | VARCHAR(10)       |                         |
 | ProductCreateddate  | DATE              | CHECK (<= CURRENT_DATE) |
----------------------------------------------------------------------
+
