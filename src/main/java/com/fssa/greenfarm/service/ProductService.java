@@ -41,10 +41,10 @@ public class ProductService {
 	}
 
 	// deleting product
-	public static  boolean deleteProduct(int id) throws SQLException, ProductInvalidException {
+	public static  boolean deleteProduct(int id, String name) throws SQLException, ProductInvalidException {
 
 		if (ProductValidator.validateProductId(id)) {
-			 Productdao.deleteProduct(id);
+			 Productdao.deleteProduct(id, name);
 			 return true;
 		}
 		return false;

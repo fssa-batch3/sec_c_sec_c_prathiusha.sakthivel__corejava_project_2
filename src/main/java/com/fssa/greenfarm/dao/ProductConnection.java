@@ -6,24 +6,54 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class ProductConnection {
-	public static Connection getConnection() {
-		Connection connection = null;
-		String url = "jdbc:mysql://localhost:3306/GreenFarm";
-		String userName = "root";
-		String password = "123456";
+	
+	 public static Connection getConnection() {
+	        Connection con = null;
 
-		try {
-			connection = DriverManager.getConnection(url, userName, password);
-		} catch (Exception e) {
+	        String url, userName, passWord;
 
-			e.printStackTrace();
+	        if (System.getenv("CI") != null) {
+	            url = System.getenv("DATABASE_HOST");
+	            userName = System.getenv("DATABASE_USERNAME");
+	            passWord = System.getenv("DATABASE_PASSWORD");
+	        } else {
+	            Dotenv env = Dotenv.load();
+	            url = env.get("DATABASE_HOST");
+	            userName = env.get("DATABASE_USERNAME");
+	            passWord = env.get("DATABASE_PASSWORD");
+	        }
 
-			throw new RuntimeException("Unable to connect to the database");
-		}
+	        try {
+	            Class.forName("com.mysql.cj.jdbc.Driver");
+	            con = DriverManager.getConnection(url, userName, passWord);
+	            System.out.println("connected");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            throw new RuntimeException("Unable to connect to the database");
+	        }
+	        return con;
+	    }
 
-		return connection;
-	}
+//	public static Connection getConnection() {
+//		Connection connection = null;
+//		String url = "jdbc:mysql://localhost:3306/GreenFarm";
+//		String userName = "root";
+//		String password = "123456";
+//
+//		try {
+//			connection = DriverManager.getConnection(url, userName, password);
+//		} catch (Exception e) {
+//
+//			e.printStackTrace();
+//
+//			throw new RuntimeException("Unable to connect to the database");
+//		}
+//
+//		return connection;
+//	}
 
 	
 	// method for closing the connection
@@ -43,5 +73,10 @@ public class ProductConnection {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void main(String[] args) {
+		getConnection();
+	}
 
 }
+

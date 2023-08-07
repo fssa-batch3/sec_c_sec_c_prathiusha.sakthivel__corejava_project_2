@@ -14,7 +14,7 @@ public class Productdao {
 	public static void addProduct(Product product) throws SQLException {
 	    try (Connection connection = ProductConnection.getConnection()) {
 	        // Create insert statement
-	        String query = "insert into product(ProductName, ProductId, ProductImageUrl, ProductPrice, ProductQuantity, ProductPercentage, ProductDescription, ProductCategory, ProductCreatedDate) values (?,?,?,?,?,?,?,?,?)";
+	        String query = "insert into Product(ProductName, ProductId, ProductImageUrl, ProductPrice, ProductQuantity, ProductPercentage, ProductDescription, ProductCategory, ProductCreatedDate) values (?,?,?,?,?,?,?,?,?)";
 
 	        // Execute insert statement
 	        try (PreparedStatement pst = connection.prepareStatement(query)) {
@@ -27,7 +27,7 @@ public class Productdao {
 	            pst.setString(7, product.getDescription());
 	            pst.setString(8, product.getCategory());
 	            pst.setDate(9, java.sql.Date.valueOf(product.getCreateddate()));
-
+   System.out.println(pst);
 	            pst.executeUpdate();
 	        } catch (SQLException e) {
 	            // Handle the exception appropriately
@@ -51,7 +51,7 @@ public class Productdao {
 //	}
 
 	// deleting product
-	public static void deleteProduct(int productId) throws SQLException {
+	public static void deleteProduct(int productId,String productName) throws SQLException {
 		if(productId <= 0) {
 			throw new SQLException("product id cannot be zero or negative");
 		}
@@ -66,8 +66,10 @@ public class Productdao {
 		try {
 
 			PreparedStatement pst = connection.prepareStatement(query);
-			pst.setString(productId, query);
-			pst.setInt(3, productId);
+			
+			pst.setString(1, productName);
+			pst.setInt(2,productId);
+		
 			int rowsDeleted = pst.executeUpdate();
 			if (rowsDeleted > 0) {
 				System.out.println("Product with ID " + productId + " deleted successfully.");
@@ -133,7 +135,6 @@ public class Productdao {
 		String query = "UPDATE Product SET ProductName = ?, ProductPrice = ? ,ProductImageUrl=?,ProductQuantity=?,ProductPercentage=?,ProductDescription=?,ProductCategory=? WHERE ProductId = ?";
 
 		try {
-
 			PreparedStatement pst = connection.prepareStatement(query);
 			System.out.println(pst);
 			pst.setString(1, product.getName()); 
@@ -177,7 +178,7 @@ public class Productdao {
 		Connection connection = ProductConnection.getConnection();
 
 		// creating select statement
-		String query = "select * from product where ProductPrice Between ? AND ? ";
+		String query = "select * from Product where ProductPrice Between ? AND ? ";
 
 		try {
 			PreparedStatement pst = connection.prepareStatement(query);
