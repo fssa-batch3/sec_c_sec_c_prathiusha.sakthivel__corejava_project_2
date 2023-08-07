@@ -1,4 +1,4 @@
-# sec_c_sec_c_prathiusha.sakthivel__corejava_project_2
+DB TABLE
 
 | Column Name         | Data Type         | Constraints             |
 |---------------------|-------------------|-------------------------|
