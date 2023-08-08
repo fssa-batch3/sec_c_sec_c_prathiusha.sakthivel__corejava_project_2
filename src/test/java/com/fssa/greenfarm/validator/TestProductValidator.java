@@ -26,7 +26,7 @@ public class TestProductValidator {
 		} catch (ProductInvalidException ex) {
 
 			// this will fail when an exception is thrown
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_ImageURL);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_ImageURL,ex.getMessage());
 
 		}
 
@@ -87,7 +87,7 @@ public class TestProductValidator {
 		} catch (ProductInvalidException ex) {
 
 			// If an exception is thrown, the test should fail
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_NAME);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_NAME,ex.getMessage());
 
 		}
 	}
@@ -103,7 +103,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_NAME);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_NAME,ex.getMessage());
 
 		}
 	}
@@ -137,7 +137,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_NAME);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_NAME,ex.getMessage());
 
 		}
 
@@ -178,7 +178,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_ID);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_ID,ex.getMessage());
 
 		}
 
@@ -214,7 +214,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_ImageURL);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_ImageURL,ex.getMessage());
 
 		}
 
@@ -231,7 +231,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_ImageURL);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_ImageURL,ex.getMessage());
 
 		}
 
@@ -267,7 +267,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_PRICE);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_PRICE,ex.getMessage());
 
 		}
 
@@ -305,7 +305,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_QUANTITY);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_QUANTITY,ex.getMessage());
 
 		}
 	}
@@ -322,7 +322,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_QUANTITY);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_QUANTITY,ex.getMessage());
 
 		}
 	}
@@ -339,7 +339,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_QUANTITY);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_QUANTITY,ex.getMessage());
 
 		}
 	}
@@ -374,7 +374,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_OFFER);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_OFFER,ex.getMessage());
 
 		}
 
@@ -409,7 +409,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION,ex.getMessage());
 
 		}
 	}
@@ -425,7 +425,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION,ex.getMessage());
 
 		}
 	}
@@ -441,7 +441,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION,ex.getMessage());
 
 		}
 	}
@@ -457,7 +457,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION,ex.getMessage());
 
 		}
 	}
@@ -485,7 +485,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_CREATED_DATE);
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_CREATED_DATE,ex.getMessage());
 
 		}
 	}
@@ -501,8 +501,7 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_CREATED_DATE);
-		}
+			 Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_CREATED_DATE, ex.getMessage());		}
 	}
 
 }
