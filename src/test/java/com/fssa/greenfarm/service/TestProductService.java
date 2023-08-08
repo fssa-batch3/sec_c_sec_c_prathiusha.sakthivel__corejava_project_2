@@ -15,7 +15,7 @@ import com.fssa.greenfarm.model.Product;
 public class TestProductService {
 
 	@Test
-	public void testAddProduct() {
+	 void testAddProduct() {
 		// Create a sample product for testing
 		Product product = new Product("Beetroot", 5, "https://iili.io/.jpg", 500, 2, 50, "It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
 		ProductService productservice = new ProductService();
@@ -29,7 +29,7 @@ public class TestProductService {
 	
 
 	@Test
-	public void testInvalidAddProduct() {
+	 void testInvalidAddProduct() {
 		// Create a sample product for testing
 		Product product = new Product();
 		ProductService productservice = new ProductService();
@@ -39,7 +39,7 @@ public class TestProductService {
 	}
 
 	@Test
-	public void testUpdateProduct() throws SQLException, ProductInvalidException {
+	 void testUpdateProduct() throws SQLException, ProductInvalidException {
 		Product product = new Product();	
 		ProductService productservice = new ProductService();
 		
@@ -57,7 +57,7 @@ public class TestProductService {
 	}
 
 	@Test
-	public void testInvalidUpdateProduct() {
+	 void testInvalidUpdateProduct() {
 		Product product = new Product();
 		ProductService productservice = new ProductService();
 		
@@ -66,7 +66,7 @@ public class TestProductService {
 	} 
 
 	@Test
-	public void testDeleteProduct() {
+	 void testDeleteProduct() {
 		try {
 			Assertions.assertTrue(ProductService.deleteProduct(3,"Tomato"));
 		} catch (Exception e) {
@@ -75,7 +75,7 @@ public class TestProductService {
 	}
 
 	@Test
-	public void testInvalidDeleteProduct() {
+	 void testInvalidDeleteProduct() {
 		try {
 			Assertions.assertTrue(ProductService.deleteProduct(3, null));
 		} catch (Exception e) {
@@ -85,7 +85,7 @@ public class TestProductService {
 	
 
     @Test
-    public void testSearchingPriceValidInput() {
+     void testSearchingPriceValidInput() {
        
         int fromRange = 40;
         int toRange = 100;
