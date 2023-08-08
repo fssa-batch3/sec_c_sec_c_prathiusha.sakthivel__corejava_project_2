@@ -257,7 +257,7 @@ public class TestProductValidator {
 	}
 
 	@Test
-	public void testInValidProductPrice() {
+	 void testInValidProductPrice() {
 		try {
 
 			int productPrice = 5; // Invalid product price
@@ -276,7 +276,7 @@ public class TestProductValidator {
 	// 5---test case for product quantity
 
 	@Test
-	public void testValidProductQuantity() throws ProductInvalidException {
+	 void testValidProductQuantity() throws ProductInvalidException {
 //		try {
 
 			// Valid product quantity
@@ -294,7 +294,7 @@ public class TestProductValidator {
 	}
 
 	@Test
-	public void testInvalidZeroProductQuantity() {
+	 void testInvalidZeroProductQuantity() {
 		try {
 
 			// Invalid product quantity zero as a value
