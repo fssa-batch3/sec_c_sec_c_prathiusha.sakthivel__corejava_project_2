@@ -53,13 +53,11 @@ public class ProductService {
 	// searching product according to its price range
 	public  Product searchingPrice(int fromrange, int torange) throws SQLException, ProductInvalidException {
 
-		if (ProductValidator.validateProductPrice(torange)) {
+		if (ProductValidator.validateProductPrice(0)) {
 			return Productdao.searchingPrice(fromrange, torange);
 		}
 		return null;
 	}
-
-
 	
 }
 
