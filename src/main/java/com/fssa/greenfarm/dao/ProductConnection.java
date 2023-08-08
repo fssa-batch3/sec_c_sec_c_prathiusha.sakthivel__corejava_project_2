@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.fssa.greenfarm.logger.Logger;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ProductConnection {
@@ -31,7 +33,8 @@ public class ProductConnection {
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, userName, passWord);
-	            System.out.println("connected");
+//	            System.out.println("connected");
+	            Logger.info("connected");
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	            throw new RuntimeException("Unable to connect to the database");

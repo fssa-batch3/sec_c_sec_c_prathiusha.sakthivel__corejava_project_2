@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.fssa.greenfarm.logger.Logger;
 import com.fssa.greenfarm.model.Product;
 
 public class Productdao {
@@ -27,7 +28,7 @@ public class Productdao {
 	            pst.setString(7, product.getDescription());
 	            pst.setString(8, product.getCategory());
 	            pst.setDate(9, java.sql.Date.valueOf(product.getCreateddate()));
-   System.out.println(pst);
+	            Logger.info(pst);
 	            pst.executeUpdate();
 	        } catch (SQLException e) {
 	            // Handle the exception appropriately
@@ -72,11 +73,11 @@ public class Productdao {
 		
 			int rowsDeleted = pst.executeUpdate();
 			if (rowsDeleted > 0) {
-				System.out.println("Product with ID " + productId + " deleted successfully.");
+				 Logger.info("Product with ID " + productId + " deleted successfully.");
 
 			} else {
 
-				System.out.println("Product with ID " + productId + " not found.");
+				 Logger.info("Product with ID " + productId + " not found.");
 
 			}
 		} catch (SQLException e) {
@@ -107,10 +108,10 @@ public class Productdao {
 
 			if (resultSet.next()) {
 				// Extracting the data from the result set
-				System.out.println(resultSet.getInt("ProductId"));
+				 Logger.info(resultSet.getInt("ProductId"));
 
 			} else {
-				System.out.println("Product not found.");
+				 Logger.info("Product not found.");
 				return null;
 			}
 		} catch (SQLException e) {
@@ -136,7 +137,7 @@ public class Productdao {
 
 		try {
 			PreparedStatement pst = connection.prepareStatement(query);
-			System.out.println(pst);
+			 Logger.info(pst);
 			pst.setString(1, product.getName()); 
 			pst.setDouble(2, product.getPrice());
 			pst.setString(3, product.getImageURL());
@@ -147,16 +148,16 @@ public class Productdao {
 			pst.setInt(8, product.getId());
 
 			int rowsUpdated = pst.executeUpdate();
-			System.out.println(rowsUpdated);
+			 Logger.info(rowsUpdated);
 
 			if (rowsUpdated > 0) {
 
-				System.out.println("Product with ID " + product.getId() + " updated successfully.");
+				 Logger.info("Product with ID " + product.getId() + " updated successfully.");
 
 
 			} else {
 
-				System.out.println("Product with ID " + product.getId() + " not found.");
+				 Logger.info("Product with ID " + product.getId() + " not found.");
 
 
 			}
@@ -189,16 +190,16 @@ public class Productdao {
 			ResultSet resultset = pst.executeQuery();
 
 			if (resultset.next()) {
-				System.out.println(resultset.getString("ProductName"));
+				 Logger.info(resultset.getString("ProductName"));
 
 			} else {
-				System.out.println("Product not found.");
+				 Logger.info("Product not found.");
 				return null;
 			}
 
 		} catch (SQLException e) {
 
-			System.out.println(e.getMessage());
+			 Logger.info(e.getMessage());
 			throw new SQLException("Error occurred.");
 
 		} finally {
