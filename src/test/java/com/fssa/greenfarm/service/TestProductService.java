@@ -17,26 +17,23 @@ public class TestProductService {
 	@Test
 	 void testAddProduct() {
 		// Create a sample product for testing
-		Product product = new Product("Beetroot", 5, "https://iili.io/.jpg", 500, 2, 50, "It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
+		Product product = new Product("Beetroot",10, "https://iili.io/.jpg", 50, 2, 50, "It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
 		ProductService productservice = new ProductService();
 
 		assertDoesNotThrow(() -> productservice.addProduct(product));
-		
-		
-		// The product should be added successfully
 		
 	}
 	
 
 	@Test
-	 void testInvalidAddProduct() {
+	 void testInvalidAddProduct() { 
 		// Create a sample product for testing
 		Product product = new Product();
 		ProductService productservice = new ProductService();
 		
 		assertThrows(ProductInvalidException.class, () ->  productservice.addProduct(product)); // The product should be added successfully
 
-	}
+	} 
 
 	@Test
 	 void testUpdateProduct() throws SQLException, ProductInvalidException {
@@ -46,7 +43,7 @@ public class TestProductService {
 		product.setName("Beetroot");
 		product.setId(5);
 		product.setImageURL("https://iili.io/.png");
-		product.setPrice(70);
+		product.setPrice(40);
 		product.setQuantity(2);
 		product.setPercentage(50);
 		product.setDescription("It is good in vitamins and proteins");
@@ -54,7 +51,7 @@ public class TestProductService {
 		product.setCreateddate(LocalDate.of(2023, 07, 10));
 		Assertions.assertTrue(ProductService.updateProduct(product));
 		
-	}
+	} 
 
 	@Test
 	 void testInvalidUpdateProduct() {
@@ -68,7 +65,7 @@ public class TestProductService {
 	@Test
 	 void testDeleteProduct() {
 		try {
-			Assertions.assertTrue(ProductService.deleteProduct(3,"Tomato"));
+			Assertions.assertTrue(ProductService.deleteProduct(5,"Beetroot"));
 		} catch (Exception e) {
 			Assertions.assertEquals("Error occurred while deleting the product.", e.getMessage());
 		}
@@ -94,6 +91,29 @@ public class TestProductService {
         assertDoesNotThrow(() -> productservice.searchingPrice(fromRange, toRange));
 	}
 	
+    @Test
+    void testReadProduct() {
+        try {
+        	Product product = new Product();
+    		ProductService productservices = new ProductService();
+//            Product product = ProductService.readProduct(16);
+//            Assertions.assertNotNull(product);
+    		assertThrows(ProductInvalidException.class, () ->  productservices.readProduct(9)); // The product should be added successfully
+
+        } catch (Exception e) {
+            Assertions.fail("Error occurred while reading the product." + e.getMessage());
+        }
+    }
+
+    @Test
+    void testReadNonexistentProduct() {
+        try {
+            Product product = ProductService.readProduct(1000); 
+            Assertions.assertNull(product);
+        } catch (Exception e) {
+            Assertions.fail("Error occurred while reading the product." + e.getMessage());
+        }
+    }
 }
 
 

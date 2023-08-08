@@ -19,7 +19,7 @@ public class ProductService {
 		}
 		return false;   
 	}
-	
+	 
 	// updating product
 	public static  boolean updateProduct(Product product) throws SQLException, ProductInvalidException {
 
@@ -29,10 +29,11 @@ public class ProductService {
 			return true;
 		} 
 		return false; 
-	}
+	} 
 
+	
 	// reading product
-	public  Product readProduct(int id) throws SQLException, ProductInvalidException {
+	public static  Product readProduct(int id) throws SQLException, ProductInvalidException {
 
 		if (ProductValidator.validateProductId(id)) {
 			return Productdao.readProduct(id);
@@ -53,7 +54,7 @@ public class ProductService {
 	// searching product according to its price range
 	public  Product searchingPrice(int fromrange, int torange) throws SQLException, ProductInvalidException {
 
-		if (ProductValidator.validateProductPrice(0)) {
+		if (ProductValidator.validateProductPrice(torange)) {
 			return Productdao.searchingPrice(fromrange, torange);
 		}
 		return null;

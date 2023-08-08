@@ -5,13 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.logger.Logger;
 import com.fssa.greenfarm.model.Product;
 
 public class Productdao {
 
 	// adding product
 
-	public static void addProduct(Product product) throws SQLException {
+	public static void addProduct(Product product) throws DAOException, SQLException {
 	    try (Connection connection = ProductConnection.getConnection()) {
 	        // Create insert statement
 	        String query = "insert into Product(ProductName, ProductId, ProductImageUrl, ProductPrice, ProductQuantity, ProductPercentage, ProductDescription, ProductCategory, ProductCreatedDate) values (?,?,?,?,?,?,?,?,?)";
@@ -27,7 +29,7 @@ public class Productdao {
 	            pst.setString(7, product.getDescription());
 	            pst.setString(8, product.getCategory());
 	            pst.setDate(9, java.sql.Date.valueOf(product.getCreateddate()));
-   System.out.println(pst);
+	            Logger.info(pst);
 	            pst.executeUpdate();
 	        } catch (SQLException e) {
 	            // Handle the exception appropriately
@@ -37,21 +39,10 @@ public class Productdao {
 	        }
 	    }
 	}
-
-//
-//	// main method
-//	public static void main(String[] args) throws SQLException {
-//
-//		Product pr = new Product("Brinjal", 4, "www.Brinjal.png", 50, 2, 50, "It is good in vitamins and proteins",
-//				"vegetables", null);
-//		// addProduct(pr);
-//		updateProduct(pr);
-//		searchingPrice(30, 60);
-//
-//	}
+ 
 
 	// deleting product
-	public static void deleteProduct(int productId,String productName) throws SQLException {
+	public static void deleteProduct(int productId,String productName) throws SQLException, DAOException {
 		if(productId <= 0) {
 			throw new SQLException("product id cannot be zero or negative");
 		}
@@ -72,11 +63,11 @@ public class Productdao {
 		
 			int rowsDeleted = pst.executeUpdate();
 			if (rowsDeleted > 0) {
-				System.out.println("Product with ID " + productId + " deleted successfully.");
+				Logger.info("Product with ID " + productId + " deleted successfully.");
 
 			} else {
 
-				System.out.println("Product with ID " + productId + " not found.");
+				Logger.info("Product with ID " + productId + " not found.");
 
 			}
 		} catch (SQLException e) {
@@ -90,7 +81,7 @@ public class Productdao {
 	}
 
 	// reading product
-	public static Product readProduct(int productId) throws SQLException {
+	public static Product readProduct(int productId) throws SQLException, DAOException {
 
 		Connection connection = ProductConnection.getConnection();
 
@@ -107,10 +98,10 @@ public class Productdao {
 
 			if (resultSet.next()) {
 				// Extracting the data from the result set
-				System.out.println(resultSet.getInt("ProductId"));
+				Logger.info(resultSet.getInt("ProductId"));
 
 			} else {
-				System.out.println("Product not found.");
+				Logger.info("Product not found.");
 				return null;
 			}
 		} catch (SQLException e) {
@@ -127,7 +118,7 @@ public class Productdao {
 //	int productId, String newProductName, double newPrice,String productImageURL,double productQuantity,
 //	String productDescription ,String productCategory
 //	updating product
-	public static void updateProduct(Product product) throws SQLException {
+	public static void updateProduct(Product product) throws SQLException, DAOException {
 
 		Connection connection = ProductConnection.getConnection();
 
@@ -147,16 +138,16 @@ public class Productdao {
 			pst.setInt(8, product.getId());
 
 			int rowsUpdated = pst.executeUpdate();
-			System.out.println(rowsUpdated);
+			Logger.info(rowsUpdated);
 
 			if (rowsUpdated > 0) {
 
-				System.out.println("Product with ID " + product.getId() + " updated successfully.");
+				Logger.info("Product with ID " + product.getId() + " updated successfully.");
 
 
 			} else {
 
-				System.out.println("Product with ID " + product.getId() + " not found.");
+				Logger.info("Product with ID " + product.getId() + " not found.");
 
 
 			}
@@ -172,7 +163,7 @@ public class Productdao {
 
 	// method for searching the product and listing it according to its price range
 
-	public static Product searchingPrice(int fromrange, int torange) throws SQLException {
+	public static Product searchingPrice(int fromrange, int torange) throws SQLException, DAOException {
 
 		// creating connection
 		Connection connection = ProductConnection.getConnection();
@@ -189,16 +180,16 @@ public class Productdao {
 			ResultSet resultset = pst.executeQuery();
 
 			if (resultset.next()) {
-				System.out.println(resultset.getString("ProductName"));
+				Logger.info(resultset.getString("ProductName"));
 
 			} else {
-				System.out.println("Product not found.");
+				Logger.info("Product not found.");
 				return null;
 			}
 
 		} catch (SQLException e) {
 
-			System.out.println(e.getMessage());
+			Logger.info(e.getMessage());
 			throw new SQLException("Error occurred.");
 
 		} finally {

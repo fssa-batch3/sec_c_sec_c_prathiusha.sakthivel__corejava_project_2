@@ -1,4 +1,4 @@
-package com.fssa.greenfarm.dao;
+ package com.fssa.greenfarm.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.logger.Logger;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ProductConnection {
 	
-	 public static Connection getConnection() {
+	 public static Connection getConnection() throws DAOException {
 	        Connection con = null;
 
 	        String url;
@@ -31,31 +34,13 @@ public class ProductConnection {
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, userName, passWord);
-	            System.out.println("connected");
+	            Logger.info("connected");
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            throw new RuntimeException("Unable to connect to the database");
+	            throw new DAOException("Unable to connect to the database");
 	        }
 	        return con;
 	    }
-
-//	public static Connection getConnection() {
-//		Connection connection = null;
-//		String url = "jdbc:mysql://localhost:3306/GreenFarm";
-//		String userName = "root";
-//		String password = "123456";
-//
-//		try {
-//			connection = DriverManager.getConnection(url, userName, password);
-//		} catch (Exception e) {
-//
-//			e.printStackTrace();
-//
-//			throw new RuntimeException("Unable to connect to the database");
-//		}
-//
-//		return connection;
-//	}
 
 	
 	// method for closing the connection
@@ -76,9 +61,10 @@ public class ProductConnection {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DAOException {
 		getConnection();
 	}
 
 }
+
 
