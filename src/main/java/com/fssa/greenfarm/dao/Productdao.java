@@ -33,13 +33,13 @@ public class Productdao {
 	            pst.executeUpdate();
 	        } catch (SQLException e) {
 	            // Handle the exception appropriately
-	            e.printStackTrace(); // For example, you can log the error
+	            e.getMessage(); // For example, you can log the error
 	            // You can also re-throw the same exception to propagate it to the calling code
 	            throw e;
 	        }
 	    }
 	}
- 
+  
 
 	// deleting product
 	public static void deleteProduct(int productId,String productName) throws SQLException, DAOException {
@@ -92,7 +92,7 @@ public class Productdao {
 
 			PreparedStatement pst = connection.prepareStatement(query);
 
-			pst.setInt(2, productId);
+			pst.setInt(1, productId);
 
 			ResultSet resultSet = pst.executeQuery();
 
@@ -106,7 +106,7 @@ public class Productdao {
 			}
 		} catch (SQLException e) {
 
-			throw new SQLException("Error occurred.");
+			throw new SQLException("Error occurred." + e.getMessage());
 
 		} finally {
 			// Close connection

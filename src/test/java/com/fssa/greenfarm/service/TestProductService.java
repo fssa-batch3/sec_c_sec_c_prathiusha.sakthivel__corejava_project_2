@@ -1,4 +1,4 @@
-package com.fssa.greenfarm.service;
+ package com.fssa.greenfarm.service;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import com.fssa.greenfarm.exception.DAOException;
 import com.fssa.greenfarm.exception.ProductInvalidException;
 import com.fssa.greenfarm.model.Product;
 
@@ -17,7 +18,7 @@ public class TestProductService {
 	@Test
 	 void testAddProduct() {
 		// Create a sample product for testing
-		Product product = new Product("Beetroot",10, "https://iili.io/.jpg", 50, 2, 50, "It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
+		Product product = new Product("Beetroot",18, "https://iili.io/.jpg", 50, 2, 50, "It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
 		ProductService productservice = new ProductService();
 
 		assertDoesNotThrow(() -> productservice.addProduct(product));
@@ -36,7 +37,7 @@ public class TestProductService {
 	} 
 
 	@Test
-	 void testUpdateProduct() throws SQLException, ProductInvalidException {
+	 void testUpdateProduct() throws SQLException, ProductInvalidException, DAOException {
 		Product product = new Product();	
 		ProductService productservice = new ProductService();
 		
@@ -93,26 +94,16 @@ public class TestProductService {
 	
     @Test
     void testReadProduct() {
-        try {
         	Product product = new Product();
     		ProductService productservices = new ProductService();
-//            Product product = ProductService.readProduct(16);
-//            Assertions.assertNotNull(product);
-    		assertThrows(ProductInvalidException.class, () ->  productservices.readProduct(9)); // The product should be added successfully
+            assertDoesNotThrow(() -> productservices.readProduct(9));
 
-        } catch (Exception e) {
-            Assertions.fail("Error occurred while reading the product." + e.getMessage());
-        }
     }
 
     @Test
     void testReadNonexistentProduct() {
-        try {
-            Product product = ProductService.readProduct(1000); 
-            Assertions.assertNull(product);
-        } catch (Exception e) {
-            Assertions.fail("Error occurred while reading the product." + e.getMessage());
-        }
+    		ProductService productservices = new ProductService();
+            assertThrows(ProductInvalidException.class, () -> productservices.readProduct(1000));
     }
 }
 

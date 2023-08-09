@@ -1,6 +1,5 @@
 package com.fssa.greenfarm.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class Product {
@@ -12,7 +11,7 @@ public class Product {
 	private double price;
 	private double quantity;
 	private int percentage;
-	private String description;
+	private String description; 
 	private String category;
 	private LocalDate createddate;
 
@@ -35,7 +34,6 @@ public class Product {
 	}
 
 	public Product() {
-		// TODO Auto-generated constructor stub
 	}
 
 	// setters and getter methods in public for accessing the private data members
