@@ -62,11 +62,9 @@ public class ProductValidator {
 		String PATTERN = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg))";
 		Pattern pattern = Pattern.compile(PATTERN);
 		Matcher matcher = pattern.matcher(imageURL);
-		Boolean isMatch = matcher.matches();
-
 		// If it matches the above pattern it will return true otherwise else will
 		// execute
-		if (isMatch) {
+		if (matcher.matches()) {
 			return true;
 		} else {
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_ImageURL);
@@ -119,9 +117,8 @@ public class ProductValidator {
 		String PATTERN = "^[a-zA-Z0-9 .,!?]+$";
 		Pattern pattern = Pattern.compile(PATTERN);
 		Matcher matcher = pattern.matcher(description);
-		Boolean isMatch = matcher.matches();
 
-		if (isMatch) {
+		if (matcher.matches()) {
 			return true;
 		} else {
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION);
