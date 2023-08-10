@@ -14,11 +14,11 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class ProductConnection {
 	
 	 public static Connection getConnection() throws DAOException {
-	        Connection con = null;
-
+	      
 	        String url;
 	        String userName;
 	        String passWord;
+	        Connection con = null;
 
 	        if (System.getenv("CI") != null) {
 	            url = System.getenv("DATABASE_HOST");
@@ -35,11 +35,14 @@ public class ProductConnection {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, userName, passWord);
 	            Logger.info("connected");
+	            return con;
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	            throw new DAOException("Unable to connect to the database");
+	        }finally {
+	        	close(con, null, null);
 	        }
-	        return con;
+	     
 	    }
 
 	

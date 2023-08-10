@@ -59,7 +59,7 @@ public class ProductValidator {
 		if (imageURL == null || "".equals(imageURL.trim())) {
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_ImageURL);
 		}
-		String PATTERN = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|png|svg))";
+		String PATTERN = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg))";
 		Pattern pattern = Pattern.compile(PATTERN);
 		Matcher matcher = pattern.matcher(imageURL);
 		Boolean isMatch = matcher.matches();
