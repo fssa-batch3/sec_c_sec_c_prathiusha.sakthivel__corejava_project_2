@@ -15,4 +15,4 @@ public class DAOException extends Exception {
 		public DAOException(String msg, Throwable te) {
 			super(msg, te);
 		}
-	}
+}

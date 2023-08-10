@@ -31,7 +31,7 @@ public class ProductConnection {
 	            passWord = env.get("DATABASE_PASSWORD");
 	        }
  
-	        try {
+	        try { 
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, userName, passWord);
 	            Logger.info("connected");

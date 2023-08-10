@@ -46,15 +46,12 @@ public class Productdao {
 		if(productId <= 0) {
 			throw new SQLException("product id cannot be zero or negative");
 		}
-
-		Connection connection = ProductConnection.getConnection();
-
 		// Create delete statement
 
 		String query = "DELETE FROM Product WHERE ProductName = ? AND ProductId = ?";
 
 		// Execute delete statement
-		try {
+		try(Connection connection = ProductConnection.getConnection()) {
 
 			PreparedStatement pst = connection.prepareStatement(query);
 			
@@ -62,6 +59,7 @@ public class Productdao {
 			pst.setInt(2,productId);
 		
 			int rowsDeleted = pst.executeUpdate();
+			
 			if (rowsDeleted > 0) {
 				Logger.info("Product with ID " + productId + " deleted successfully.");
 
@@ -74,15 +72,12 @@ public class Productdao {
 
 			throw new SQLException("Error occurred while deleting the product.");
 
-		} finally {
-			// Close connection
-			ProductConnection.close(connection, null, null);
-		}
+		} 
 	}
 
 	// reading product
 	public static Product readProduct(int productId) throws SQLException, DAOException {
-
+ 
 		Connection connection = ProductConnection.getConnection();
 
 		// Create SELECT statement
@@ -180,7 +175,7 @@ public class Productdao {
 			ResultSet resultset = pst.executeQuery();
 
 			if (resultset.next()) {
-				Logger.info(resultset.getString("ProductName"));
+				Logger.info(resultset.getString("ProductName")); 
 
 			} else {
 				Logger.info("Product not found.");
