@@ -2,10 +2,6 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.fssa.greenfarm.exception.DAOException;
 import com.fssa.greenfarm.logger.Logger;
 
