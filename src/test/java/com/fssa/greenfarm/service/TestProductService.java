@@ -18,7 +18,7 @@ public class TestProductService {
 	@Test
 	 void testAddProduct() {
 		// Create a sample product for testing
-		Product product = new Product("Beetroot",23, "https://iili.io/.jpg", 50, 2, 50, "It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
+		Product product = new Product("Beetroot",22, "https://iili.io/.jpg", 50, 2, 50, "It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
 		ProductService productservice = new ProductService();
 
 		assertDoesNotThrow(() -> productservice.addProduct(product));
@@ -44,7 +44,7 @@ public class TestProductService {
 		product.setName("Beetroot");
 		product.setId(5);
 		product.setImageURL("https://iili.io/.png");
-		product.setPrice(40);
+		product.setPrice(400);
 		product.setQuantity(2);
 		product.setPercentage(50);
 		product.setDescription("It is good in vitamins and proteins");
@@ -96,7 +96,7 @@ public class TestProductService {
     void testReadProduct() {
         	Product product = new Product();
     		ProductService productservices = new ProductService();
-            assertDoesNotThrow(() -> productservices.readProduct(9));
+            assertDoesNotThrow(() -> productservices.readProduct(29));
 
     }
 

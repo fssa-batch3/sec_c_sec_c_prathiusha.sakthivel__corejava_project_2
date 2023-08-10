@@ -35,39 +35,13 @@ public class ProductConnection {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, userName, passWord);
 	            Logger.info("connected");
-	            return con;
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	            throw new DAOException("Unable to connect to the database");
-	        }finally {
-	        	close(con, null, null);
 	        }
+	        return con;
 	     
 	    }
-
-	
-	// method for closing the connection
-
-	public static void close(Connection conn, Statement stmt, ResultSet rs) {
-		try {
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			if (conn != null) {
-				conn.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void main(String[] args) throws DAOException {
-		getConnection();
-	}
-
 }
 
 

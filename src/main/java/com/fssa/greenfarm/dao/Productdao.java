@@ -14,10 +14,12 @@ public class Productdao {
 	// adding product
 
 	public static void addProduct(Product product) throws DAOException, SQLException {
-		try (Connection connection = ProductConnection.getConnection()) {
-			// Create insert statement
-			String query = "insert into Product(ProductName, ProductId, ProductImageUrl, ProductPrice, ProductQuantity, ProductPercentage, ProductDescription, ProductCategory, ProductCreatedDate) values (?,?,?,?,?,?,?,?,?)";
+		// Create insert statement
 
+		try (Connection connection = ProductConnection.getConnection()) {
+			
+			String query = "insert into Product(ProductName, ProductId, ProductImageUrl, ProductPrice, ProductQuantity, ProductPercentage, ProductDescription, ProductCategory, ProductCreatedDate) values (?,?,?,?,?,?,?,?,?)";
+		
 			// Execute insert statement
 			try (PreparedStatement pst = connection.prepareStatement(query)) {
 				pst.setString(1, product.getName());
@@ -29,14 +31,15 @@ public class Productdao {
 				pst.setString(7, product.getDescription());
 				pst.setString(8, product.getCategory());
 				pst.setDate(9, java.sql.Date.valueOf(product.getCreateddate()));
+				
 				Logger.info(pst);
 				pst.executeUpdate();
-			} catch (SQLException e) {
-				// Handle the exception appropriately
-				e.getMessage(); // For example, you can log the error
-				// You can also re-throw the same exception to propagate it to the calling code
-				throw e;
-			}
+			} 
+		}
+		catch (SQLException e ) {
+			// Handle the exception appropriately
+			// You can also re-throw the same exception to propagate it to the calling code
+			throw new DAOException("Error while adding product: " + e.getMessage());
 		}
 	}
 
