@@ -17,7 +17,7 @@ public class Productdao {
 	    try (Connection connection = ProductConnection.getConnection()) {
 	        // Create insert statement
 	        String query = "insert into Product(ProductName, ProductId, ProductImageUrl, ProductPrice, ProductQuantity, ProductPercentage, ProductDescription, ProductCategory, ProductCreatedDate) values (?,?,?,?,?,?,?,?,?)";
-
+ 
 	        // Execute insert statement
 	        try (PreparedStatement pst = connection.prepareStatement(query)) {
 	            pst.setString(1, product.getName());
@@ -46,14 +46,16 @@ public class Productdao {
 		if(productId <= 0) {
 			throw new SQLException("product id cannot be zero or negative");
 		}
-		// Create delete statement
-
 		String query = "DELETE FROM Product WHERE ProductName = ? AND ProductId = ?";
-
+		
 		// Execute delete statement
 		try(Connection connection = ProductConnection.getConnection()) {
 
-			PreparedStatement pst = connection.prepareStatement(query);
+			// Create delete statement
+
+			
+
+			try(PreparedStatement pst = connection.prepareStatement(query)){
 			
 			pst.setString(1, productName);
 			pst.setInt(2,productId);
@@ -68,6 +70,7 @@ public class Productdao {
 				Logger.info("Product with ID " + productId + " not found.");
 
 			}
+			}
 		} catch (SQLException e) {
 
 			throw new SQLException("Error occurred while deleting the product.");
@@ -77,13 +80,11 @@ public class Productdao {
 
 	// reading product
 	public static Product readProduct(int productId) throws SQLException, DAOException {
- 
-		Connection connection = ProductConnection.getConnection();
 
-		// Create SELECT statement
-		String query = "SELECT * FROM Product WHERE ProductId = ?";
-
-		try {
+		try(Connection connection = ProductConnection.getConnection()) {
+			
+			// Create SELECT statement
+			String query = "SELECT * FROM Product WHERE ProductId = ?";
 
 			PreparedStatement pst = connection.prepareStatement(query);
 
@@ -103,10 +104,7 @@ public class Productdao {
 
 			throw new SQLException("Error occurred." + e.getMessage());
 
-		} finally {
-			// Close connection
-			ProductConnection.close(connection, null, null);
-		}
+		} 
 		return null;
 	}
 
@@ -115,12 +113,10 @@ public class Productdao {
 //	updating product
 	public static void updateProduct(Product product) throws SQLException, DAOException {
 
-		Connection connection = ProductConnection.getConnection();
+		try(Connection connection = ProductConnection.getConnection()) {
+			// Create update statement
+			String query = "UPDATE Product SET ProductName = ?, ProductPrice = ? ,ProductImageUrl=?,ProductQuantity=?,ProductPercentage=?,ProductDescription=?,ProductCategory=? WHERE ProductId = ?";
 
-		// Create update statement
-		String query = "UPDATE Product SET ProductName = ?, ProductPrice = ? ,ProductImageUrl=?,ProductQuantity=?,ProductPercentage=?,ProductDescription=?,ProductCategory=? WHERE ProductId = ?";
-
-		try {
 			PreparedStatement pst = connection.prepareStatement(query);
 			System.out.println(pst);
 			pst.setString(1, product.getName()); 
@@ -150,23 +146,17 @@ public class Productdao {
 
 			throw new SQLException("Error occurred while updating the product.");
 
-		} finally {
-			// Close connection
-			ProductConnection.close(connection, null, null);
-		}
+		} 
 	}
 
 	// method for searching the product and listing it according to its price range
 
 	public static Product searchingPrice(int fromrange, int torange) throws SQLException, DAOException {
+	
+		try (Connection connection = ProductConnection.getConnection()){
+			// creating select statement
+			String query = "select * from Product where ProductPrice Between ? AND ? ";
 
-		// creating connection
-		Connection connection = ProductConnection.getConnection();
-
-		// creating select statement
-		String query = "select * from Product where ProductPrice Between ? AND ? ";
-
-		try {
 			PreparedStatement pst = connection.prepareStatement(query);
 
 			pst.setInt(1, fromrange);
@@ -187,10 +177,7 @@ public class Productdao {
 			Logger.info(e.getMessage());
 			throw new SQLException("Error occurred.");
 
-		} finally {
-			// Close connection
-			ProductConnection.close(connection, null, null);
-		}
+		} 
 		return null;
 
 	}
