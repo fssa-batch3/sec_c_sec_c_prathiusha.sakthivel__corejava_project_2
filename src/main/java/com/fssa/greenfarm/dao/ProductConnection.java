@@ -1,10 +1,8 @@
  package com.fssa.greenfarm.dao;
-
+ 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import com.fssa.greenfarm.exception.DAOException;
-import com.fssa.greenfarm.logger.Logger;
-
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ProductConnection {
@@ -12,7 +10,13 @@ public class ProductConnection {
 	        // Private constructor to prevent instantiation
 	    }
 
-	
+		/**
+		 * Get a connection to the database.
+		 * 
+		 * @return The database connection.
+		 * @throws DAOException
+		 * @throws RuntimeException if unable to connect to the database.
+		 */
 	 public static Connection getConnection() throws DAOException {
 	      
 	        String url;
@@ -34,12 +38,10 @@ public class ProductConnection {
 	        try {// 
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            con = DriverManager.getConnection(url, userName, passWord);
-	            Logger.info("connected");
 	        } catch (Exception e) {
-	            e.printStackTrace();
 	            throw new DAOException("Unable to connect to the database");
 	        }
-	        return con;
+	        return con;   
 	     
 	    }
 } 
