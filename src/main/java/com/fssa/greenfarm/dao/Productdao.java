@@ -17,7 +17,7 @@ public class Productdao {
     }
 
 
-	// adding product
+	// adding product//
 
 	public static void addProduct(Product product) throws DAOException, SQLException {
 		// Create insert statement
