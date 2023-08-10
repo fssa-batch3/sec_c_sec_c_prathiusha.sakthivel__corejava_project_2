@@ -1,4 +1,4 @@
- package com.fssa.greenfarm.service;
+package com.fssa.greenfarm.service;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -16,31 +16,31 @@ import com.fssa.greenfarm.model.Product;
 public class TestProductService {
 
 	@Test
-	 void testAddProduct() {
+	void testAddProduct() {
 		// Create a sample product for testing
-		Product product = new Product("Beetroot",22, "https://iili.io/.jpg", 50, 2, 50, "It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
+		Product product = new Product("Beetroot", 24, "https://iili.io/.jpg", 50, 2, 50,
+				"It is good in vitamins and proteins", "vegetable", LocalDate.of(2023, 07, 10));
 		ProductService productservice = new ProductService();
 
 		assertDoesNotThrow(() -> productservice.addProduct(product));
-		
+
 	}
-	
 
 	@Test
-	 void testInvalidAddProduct() { 
+	void testInvalidAddProduct() {
 		// Create a sample product for testing
 		Product product = new Product();
 		ProductService productservice = new ProductService();
-		
-		assertThrows(ProductInvalidException.class, () ->  productservice.addProduct(product)); // The product should be added successfully
 
-	} 
+		assertThrows(ProductInvalidException.class, () -> productservice.addProduct(product)); // The product should be
+																								// added successfully
+	}
 
 	@Test
-	 void testUpdateProduct() throws SQLException, ProductInvalidException, DAOException {
-		Product product = new Product();	
+	void testUpdateProduct() throws SQLException, ProductInvalidException, DAOException {
+		Product product = new Product();
 		ProductService productservice = new ProductService();
-		
+
 		product.setName("Beetroot");
 		product.setId(5);
 		product.setImageURL("https://iili.io/.png");
@@ -51,61 +51,58 @@ public class TestProductService {
 		product.setCategory("vegetable");
 		product.setCreateddate(LocalDate.of(2023, 07, 10));
 		Assertions.assertTrue(ProductService.updateProduct(product));
-		
-	} 
+
+	}
 
 	@Test
-	 void testInvalidUpdateProduct() {
+	void testInvalidUpdateProduct() {
 		Product product = new Product();
 		ProductService productservice = new ProductService();
-		
-		assertThrows(ProductInvalidException.class, () ->  productservice.addProduct(product)); // The product should be added successfully
 
-	} 
+		assertThrows(ProductInvalidException.class, () -> productservice.addProduct(product)); // The product should be
+																								// added successfully
+
+	}
 
 	@Test
-	 void testDeleteProduct() {
+	void testDeleteProduct() {
 		try {
-			Assertions.assertTrue(ProductService.deleteProduct(5,"Beetroot"));
+			Assertions.assertTrue(ProductService.deleteProduct(5, "Beetroot"));
 		} catch (Exception e) {
 			Assertions.assertEquals("Error occurred while deleting the product.", e.getMessage());
 		}
 	}
 
 	@Test
-	 void testInvalidDeleteProduct() {
+	void testInvalidDeleteProduct() {
 		try {
 			Assertions.assertTrue(ProductService.deleteProduct(3, null));
 		} catch (Exception e) {
 			Assertions.assertEquals("Error occurred while deleting the product.", e.getMessage());
 		}
 	}
-	
 
-    @Test
-     void testSearchingPriceValidInput() {
-       
-        int fromRange = 40;
-        int toRange = 100;
-        ProductService productservice = new ProductService();
-        
-        assertDoesNotThrow(() -> productservice.searchingPrice(fromRange, toRange));
+	@Test
+	void testSearchingPriceValidInput() {
+
+		int fromRange = 40;
+		int toRange = 100;
+		ProductService productservice = new ProductService();
+
+		assertDoesNotThrow(() -> productservice.searchingPrice(fromRange, toRange));
 	}
-	
-    @Test
-    void testReadProduct() {
-        	Product product = new Product();
-    		ProductService productservices = new ProductService();
-            assertDoesNotThrow(() -> productservices.readProduct(29));
 
-    }
+	@Test
+	void testReadProduct() {
+		Product product = new Product();
+		ProductService productservices = new ProductService();
+		assertDoesNotThrow(() -> productservices.readProduct(29));
 
-    @Test
-    void testReadNonexistentProduct() {
-    		ProductService productservices = new ProductService();
-            assertThrows(ProductInvalidException.class, () -> productservices.readProduct(1000));
-    }
+	}
+
+	@Test
+	void testReadNonexistentProduct() {
+		ProductService productservices = new ProductService();
+		assertThrows(ProductInvalidException.class, () -> productservices.readProduct(1000));
+	}
 }
-
-
-
