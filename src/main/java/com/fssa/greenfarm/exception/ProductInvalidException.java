@@ -11,12 +11,6 @@ public class ProductInvalidException extends Exception {
 		super(msg);
 	}
 	
-//	public ProductInvalidException(Throwable te) {
-//			super(te);
-//		}
-//
-//	public ProductInvalidException(String msg, Throwable te) {
-//			super(msg, te);
-//		}
+
 
 }

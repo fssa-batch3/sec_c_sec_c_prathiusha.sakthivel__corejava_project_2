@@ -10,6 +10,12 @@ import com.fssa.greenfarm.logger.Logger;
 import com.fssa.greenfarm.model.Product;
 
 public class Productdao {
+	
+    // Private constructor to prevent instantiation
+    private Productdao() {
+        // Private constructor to prevent instantiation
+    }
+
 
 	// adding product
 
@@ -59,13 +65,15 @@ public class Productdao {
 				pst.setInt(2, productId);
 
 				int rowsDeleted = pst.executeUpdate();
+				
+				final String PRODUCT_ID_MESSAGE_PREFIX = "Product with ID ";
 
 				if (rowsDeleted > 0) {
-					Logger.info("Product with ID " + productId + " deleted successfully.");
+					Logger.info(PRODUCT_ID_MESSAGE_PREFIX + productId + " deleted successfully.");
 
 				} else {
 
-					Logger.info("Product with ID " + productId + " not found.");
+					Logger.info(PRODUCT_ID_MESSAGE_PREFIX+ productId + " not found.");
 
 				}
 			}
@@ -118,7 +126,7 @@ public class Productdao {
 		try (Connection connection = ProductConnection.getConnection()) {
 
 			try (PreparedStatement pst = connection.prepareStatement(query)) {
-				System.out.println(pst);
+				Logger.info(pst);
 				pst.setString(1, product.getName());
 				pst.setDouble(2, product.getPrice());
 				pst.setString(3, product.getImageURL());
@@ -130,14 +138,17 @@ public class Productdao {
 
 				int rowsUpdated = pst.executeUpdate();
 				Logger.info(rowsUpdated);
+				
+			    final String PRODUCT_ID_MESSAGE_PREFIX = "Product with ID ";
+
 
 				if (rowsUpdated > 0) {
 
-					Logger.info("Product with ID " + product.getId() + " updated successfully.");
+					Logger.info( PRODUCT_ID_MESSAGE_PREFIX+ product.getId() + " updated successfully.");
 
 				} else {
 
-					Logger.info("Product with ID " + product.getId() + " not found.");
+					Logger.info(PRODUCT_ID_MESSAGE_PREFIX + product.getId() + " not found.");
 
 				}
 			}

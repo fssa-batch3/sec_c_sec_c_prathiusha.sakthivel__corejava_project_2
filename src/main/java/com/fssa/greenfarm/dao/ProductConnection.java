@@ -8,6 +8,10 @@ import com.fssa.greenfarm.logger.Logger;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ProductConnection {
+	   private ProductConnection() {
+	        // Private constructor to prevent instantiation
+	    }
+
 	
 	 public static Connection getConnection() throws DAOException {
 	      
@@ -38,6 +42,6 @@ public class ProductConnection {
 	        return con;
 	     
 	    }
-}
+} 
 
 
