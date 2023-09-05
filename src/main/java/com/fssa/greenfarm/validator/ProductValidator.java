@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.fssa.greenfarm.customerrors.ProductValidatorErrors;
 import com.fssa.greenfarm.exception.ProductInvalidException;
 import com.fssa.greenfarm.model.Product;
-import com.fssa.greenfarm.model.ProductValidatorErrors;
 
 public class ProductValidator {
 
@@ -35,7 +35,7 @@ public class ProductValidator {
 		// ProductNmae should not contain space
 		// ProductName should have maximum length of 2
 		if (name == null || "".equals(name.trim()) || name.length() < 2) {
-			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_NAME); 
+			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_NAME);
 		}
 		return true;
 
@@ -50,7 +50,7 @@ public class ProductValidator {
 		}
 		return true;
 
-	}
+	}//neednot to check id
 
 	// Method to check the valid product imageURL
 	public static boolean validateProductImageURL(String imageURL) throws ProductInvalidException {
@@ -60,7 +60,7 @@ public class ProductValidator {
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_ImageURL);
 		}
 		String PATTERN = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg))";
-		Pattern pattern = Pattern.compile(PATTERN);
+		Pattern pattern = Pattern.compile(PATTERN); 
 		Matcher matcher = pattern.matcher(imageURL);
 		// If it matches the above pattern it will return true otherwise else will
 		// execute
@@ -80,13 +80,13 @@ public class ProductValidator {
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_PRICE);
 		}
 		return true;
-	}
+	}//need not check the price
 
 	// Method to check the valid product quantity
 	public static boolean validateProductQuantity(double quantity) throws ProductInvalidException {
 		// ProductQuantity cannot be equal to or less than 0
 		// ProductPrice cannot more than 5000
-		if (quantity <= 0 || quantity > 10.0) {
+		if (quantity <= 0 || quantity > 10.0) {//50
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_QUANTITY);
 		}
 
@@ -98,7 +98,7 @@ public class ProductValidator {
 	public static boolean validateProductPercentage(int percentage) throws ProductInvalidException {
 		// Product percentage cannot be less than 5
 		// Product percentage cannot more than 100
-		if (percentage <= 5 || percentage >= 100) {
+		if (percentage <= 5 || percentage >= 100) {//can accept 0
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_OFFER);
 		}
 

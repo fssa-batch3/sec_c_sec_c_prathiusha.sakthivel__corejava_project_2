@@ -10,7 +10,5 @@ public class ProductInvalidException extends Exception {
 	public ProductInvalidException(String msg) {
 		super(msg);
 	}
-	
-
 
 }

@@ -1,66 +1,79 @@
 package com.fssa.greenfarm.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
-import com.fssa.greenfarm.dao.Productdao;
+import com.fssa.greenfarm.DAO.ProductDAO;
 import com.fssa.greenfarm.exception.DAOException;
 import com.fssa.greenfarm.exception.ProductInvalidException;
+import com.fssa.greenfarm.logger.Logger;
 import com.fssa.greenfarm.model.Product;
 import com.fssa.greenfarm.validator.ProductValidator;
 
 public class ProductService {
 
 	// adding product
-	public boolean addProduct(Product product) throws  SQLException,  DAOException, ProductInvalidException {
+	public boolean addProduct(Product product) throws SQLException, DAOException, ProductInvalidException {
 
 		if (ProductValidator.validate(product)) {
 
-			Productdao.addProduct(product);
+			ProductDAO.addProduct(product);
 			return true;
-		} 
-		return false;   
+		}
+		return false;
 	}
-	  
+
 	// updating product
-	public static  boolean updateProduct(Product product) throws SQLException, ProductInvalidException, DAOException {
+	public static boolean updateProduct(Product product) throws SQLException, ProductInvalidException, DAOException {
 
-		if (ProductValidator.validate(product)) { 
+		if (ProductValidator.validate(product)) {
 
-			Productdao.updateProduct(product); 
-			return true; 
-		} 
-		return false; 
-	} 
+			ProductDAO.updateProduct(product);
+		}
+		return true;
+	}
 
-	
 	// reading product
-	public static  Product readProduct(int id) throws SQLException, ProductInvalidException, DAOException {
+	public static Product readProduct(int id) throws SQLException, ProductInvalidException, DAOException {
 
 		if (ProductValidator.validateProductId(id)) {
-			return Productdao.readProduct(id);
+			return ProductDAO.readProduct(id);
 		}
 		return null;
 	}
 
 	// deleting product
-	public static  boolean deleteProduct(int id, String name) throws SQLException, ProductInvalidException, DAOException {
+	public static boolean deleteProduct(int id, String name)
+			throws SQLException, ProductInvalidException, DAOException {
 
 		if (ProductValidator.validateProductId(id)) {
-			 Productdao.deleteProduct(id, name);
-			 return true;
+			ProductDAO.deleteProduct(id, name);
+			return true;
 		}
 		return false;
 	}
 
 	// searching product according to its price range
-	public  Product searchingPrice(int fromrange, int torange) throws SQLException, ProductInvalidException, DAOException {
+	public List<Product> searchProductByName(Product product) throws SQLException, ProductInvalidException, DAOException {
 
-		if (ProductValidator.validateProductPrice(torange)) {
-			return Productdao.searchingPrice(fromrange, torange);
-		}
-		return null;
+		ProductDAO productDao = new ProductDAO();
+		return ProductDAO.searchProductByName(product);
+
 	}
-	
+
+	// reading all product
+
+	public List<Product> readAllProduct() throws SQLException, ProductInvalidException, DAOException {
+		ProductDAO productDao = new ProductDAO();
+		return ProductDAO.readAllProduct();
+
+	}
+	// searching product according to its price range
+		public  List<Product> searchingPrice(double fromrange, double torange) throws SQLException, ProductInvalidException, DAOException {
+
+			ProductDAO productdao=new ProductDAO();
+			return ProductDAO.searchingPrice(fromrange, torange);
+		}
+
+
 }
-
-

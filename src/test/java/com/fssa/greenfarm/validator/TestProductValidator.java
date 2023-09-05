@@ -8,33 +8,33 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import com.fssa.greenfarm.customerrors.ProductValidatorErrors;
 import com.fssa.greenfarm.exception.ProductInvalidException;
 import com.fssa.greenfarm.model.Product;
-import com.fssa.greenfarm.model.ProductValidatorErrors;
 
 public class TestProductValidator {
 
 	// Test case for the validate method when the product is not null
 	@Test
-	 void testValidateNotNull() {
+	void testValidateNotNull() {
 
 		try {
- 
+
 			Product product = new Product("Tomato", 001, "www.tomato.png", 100, 1.5, 25, "Toamato", "Veges", null);
-			boolean isValid = ProductValidator.validate(product);
+			ProductValidator.validate(product);
 
 		} catch (ProductInvalidException ex) {
 
 			// this will fail when an exception is thrown
 			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_ImageURL, ex.getMessage());
-
+			
 		}
 
 	}
 
 	// Test case for the validate method when the product is null
 	@Test
-	 void testValidateNull() {
+	void testValidateNull() {
 
 		Product invalidProduct = null;
 
@@ -46,37 +46,24 @@ public class TestProductValidator {
 
 		} catch (ProductInvalidException ex) {
 
-			assertEquals(ProductValidatorErrors.INVALID_PRODUCT_NULL, ex.getMessage(), "Invalid exception message");
+			assertEquals(ProductValidatorErrors.INVALID_PRODUCT_NULL, ex.getMessage());
 
 		}
 	}
 
 	// 1---test case for product name
 	@Test
-	 void testValidProductName() throws ProductInvalidException {
+	void testValidProductName() throws ProductInvalidException  {
 		String productName = "Tomato"; // Valid product name
 		Product product1 = new Product();
 		product1.setName(productName);
 
 		Assertions.assertTrue(ProductValidator.validateProductName(product1.getName()));
-//		try {
-//
-//			String productName = "Tomato"; // Valid product name
-//			Product product1 = new Product();
-//			product1.setName(productName);
-//			ProductValidator.validateProductName(product1.getName());
-//
-//		} catch (ProductInvalidException ex) {
-//
-//			// If an exception is thrown, the test should fail
-//			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_NAME);
-//
-//		}
 
 	}
 
 	@Test
-	 void testNullProductName() {
+	void testNullProductName() {
 		try {
 
 			String productName = null; // Null product
@@ -93,7 +80,7 @@ public class TestProductValidator {
 	}
 
 	@Test
-	 void testEmptyProductName() {
+	void testEmptyProductName() {
 		try {
 
 			String productName = ""; // Empty product
@@ -109,24 +96,17 @@ public class TestProductValidator {
 	}
 
 	@Test
-	 void testProductNameWithSpaces() throws ProductInvalidException {
-//		try {
+	void testProductNameWithSpaces() throws ProductInvalidException {
 
 		String productName = "Lady's Finger"; // Product name with spaces
 		Product product1 = new Product();
 		product1.setName(productName);
 		Assertions.assertTrue(ProductValidator.validateProductName(product1.getName()));
 
-//		} catch (ProductInvalidException ex) {
-//
-//			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_NAME);
-//
-//		}
-
 	}
 
 	@Test
-	 void testProductNameTooShort() {
+	void testProductNameTooShort() {
 		try {
 
 			String productName = "f"; // Product name with length less than 2
@@ -145,29 +125,17 @@ public class TestProductValidator {
 	// 2---test case for product id
 
 	@Test
-	 void testValidProductId() throws ProductInvalidException {
+	void testValidProductId() throws ProductInvalidException {
 
 		int productId = 55; // valid product id
 		Product productid = new Product();
 		productid.setId(productId);
 		Assertions.assertTrue(ProductValidator.validateProductId(productid.getId()));
-//		try {
-//
-//			int productId = 55; // valid product id
-//			Product productid = new Product();
-//			productid.setId(productId);
-//			ProductValidator.validateProductId(productid.getId());
-//
-//		} catch (ProductInvalidException ex) {
-//
-//			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_ID);
-//
-//		}
 
 	}
 
 	@Test
-	 void testInValidProductId() {
+	void testInValidProductId() {
 		try {
 
 			int productId = -5; // Invalid product id
@@ -185,7 +153,7 @@ public class TestProductValidator {
 	// 3---test case for product Image URL
 
 	@Test
-	 void testValidProductImageURL() throws ProductInvalidException {
+	void testValidProductImageURL() throws ProductInvalidException {
 //		try {
 
 		String productImageURL = "https://iili.io/HZd9gUX.jpg"; // valid product ImageURL
@@ -193,16 +161,10 @@ public class TestProductValidator {
 		producturl.setImageURL(productImageURL);
 		Assertions.assertTrue(ProductValidator.validateProductImageURL(producturl.getImageURL()));
 
-//		} catch (ProductInvalidException ex) {
-//
-//			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_ImageURL);
-//
-//		}
-
 	}
 
 	@Test
-	 void testInValidNullProductImageURL() {
+	void testInValidNullProductImageURL() {
 		try {
 
 			String productImageURL = null; // null product ImageURL
@@ -219,7 +181,7 @@ public class TestProductValidator {
 	}
 
 	@Test
-	 void testInValidEmptyProductImageURL() {
+	void testInValidEmptyProductImageURL() {
 		try {
 
 			String productImageURL = "";// empty product ImageURL
@@ -237,19 +199,12 @@ public class TestProductValidator {
 
 	@Test
 	// 4---test case for product price
-	 void testValidProductPrice() throws ProductInvalidException {
-//		try {
+	void testValidProductPrice() throws ProductInvalidException {
 
 		int productPrice = 500; // valid product price
 		Product productcost = new Product();
 		productcost.setPrice(productPrice);
 		Assertions.assertTrue(ProductValidator.validateProductPrice(productcost.getPrice()));
-
-//		} catch (ProductInvalidException ex) {
-//
-//			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_PRICE);
-//
-//		}
 
 	}
 
@@ -274,7 +229,6 @@ public class TestProductValidator {
 
 	@Test
 	void testValidProductQuantity() throws ProductInvalidException {
-//		try {
 
 		// Valid product quantity
 		double productvalidQuantity = 5.0;
@@ -282,11 +236,6 @@ public class TestProductValidator {
 		quantity.setQuantity(productvalidQuantity);
 		Assertions.assertTrue(ProductValidator.validateProductQuantity(quantity.getQuantity()));
 
-//		} catch (ProductInvalidException ex) {
-//
-//			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_QUANTITY);
-//
-//		}
 	}
 
 	@Test
@@ -344,18 +293,11 @@ public class TestProductValidator {
 
 	@Test
 	void testValidProductPercentage() throws ProductInvalidException {
-//		try {
 
 		int productpercent = 50; // valid product id
 		Product productoffer = new Product();
 		productoffer.setPercentage(productpercent);
 		Assertions.assertTrue(ProductValidator.validateProductPercentage(productoffer.getPercentage()));
-
-//		} catch (ProductInvalidException ex) {
-//
-//			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_OFFER);
-//
-//		}
 
 	}
 
@@ -379,18 +321,12 @@ public class TestProductValidator {
 
 	@Test
 	void testValidProductDescription() throws ProductInvalidException {
-//		try {
 
 		String validDescription = "No single fruit or vegetable provides all of the nutrients you need to be healthy. Eat plenty every day.";
 		Product description = new Product();
 		description.setDescription(validDescription);
 		Assertions.assertTrue(ProductValidator.validateProductDescription(description.getDescription()));
 
-//		} catch (ProductInvalidException ex) {
-//
-//			Assertions.assertEquals(ex.getMessage(), ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION);
-//
-//		}
 	}
 
 	@Test
