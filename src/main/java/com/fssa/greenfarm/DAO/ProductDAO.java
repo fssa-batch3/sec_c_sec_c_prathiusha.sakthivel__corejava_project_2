@@ -79,7 +79,7 @@ public class ProductDAO {
 
 		Product readproduct = new Product();
 		// Create SELECT statement
-		String query = "SELECT * FROM product WHERE product_id = ?";
+		String query = "SELECT * FROM Product WHERE product_id = ?";
 
 		try (Connection connection = ProductConnection.getConnection()) {
 
