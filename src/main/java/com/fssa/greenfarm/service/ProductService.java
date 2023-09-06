@@ -6,7 +6,6 @@ import java.util.List;
 import com.fssa.greenfarm.DAO.ProductDAO;
 import com.fssa.greenfarm.exception.DAOException;
 import com.fssa.greenfarm.exception.ProductInvalidException;
-import com.fssa.greenfarm.logger.Logger;
 import com.fssa.greenfarm.model.Product;
 import com.fssa.greenfarm.validator.ProductValidator;
 
@@ -58,21 +57,21 @@ public class ProductService {
 
 	// listing product by its name
 	public List<Product> searchProductByName(String product) 
-			throws SQLException, ProductInvalidException, DAOException {
+			throws SQLException, DAOException {
 
 		return ProductDAO.searchProductByName(product);
 
 	}
 
 	// reading all product
-	public List<Product> readAllProduct() throws SQLException, ProductInvalidException, DAOException {
+	public List<Product> readAllProduct() throws SQLException, DAOException {
 		return ProductDAO.readAllProduct();
 
 	}
 	
 	// searching product according to its price range
 		public  List<Product> searchingPrice(double fromrange, double torange) 
-				throws SQLException, ProductInvalidException, DAOException {
+				throws SQLException, DAOException {
 
 			return ProductDAO.searchingPrice(fromrange, torange);
 		}

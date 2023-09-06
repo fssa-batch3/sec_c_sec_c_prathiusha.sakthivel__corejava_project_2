@@ -5,9 +5,6 @@ import java.util.regex.Pattern;
 
 import com.fssa.greenfarm.customerrors.SellerValidatorErrors;
 import com.fssa.greenfarm.exception.SellerInvalidException;
-import com.fssa.greenfarm.model.Category;
-import com.fssa.greenfarm.model.Gender;
-import com.fssa.greenfarm.model.OwnershipType;
 import com.fssa.greenfarm.model.Seller;
 
 public class SellerValidator {
@@ -39,15 +36,15 @@ public class SellerValidator {
 
 //
 	private static boolean validateEmail(String email) {
-		String emailregex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-		Pattern pattern = Pattern.compile(emailregex);
-		Matcher matcher = pattern.matcher(email);
-		Boolean isMatch = matcher.matches();
+	    String emailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+	    Pattern pattern = Pattern.compile(emailRegex);
+	    Matcher matcher = pattern.matcher(email);
 
-		if (!isMatch) {
-			throw new IllegalArgumentException("The email is invalid");
-		}
-		return true;
+	    if (!matcher.matches()) {
+	        throw new IllegalArgumentException("The email is invalid");
+	    }
+
+	    return true;
 	}
 //
 	private static boolean validateAddress(String address) {
@@ -78,21 +75,6 @@ public class SellerValidator {
 		return true;
 	}
 //
-//	private static boolean validatePincode(String pincode) {
-//		String pinCodeRegex = "^[0-9]{6}$";
-//		Pattern pattern = Pattern.compile(pinCodeRegex);
-//		Matcher matcher = pattern.matcher(pincode);
-//		boolean isMatch = matcher.matches();
-//
-//		if (!isMatch) { 
-//			throw new IllegalArgumentException("The PIN code is invalid");
-//		}
-//
-//		return true;
-//
-//	}
-
-//
 	private static boolean validateBankname(String bankname) throws SellerInvalidException {
 		if (bankname == null || "".equals(bankname.trim()) || bankname.length() < 2) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_STATE);
@@ -114,8 +96,8 @@ public class SellerValidator {
 		if (farmimage == null || "".equals(farmimage.trim())) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_FARMIMAGE);
 		}
-		String PATTERN = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg))";
-		Pattern pattern = Pattern.compile(PATTERN);
+		String farmImageRegex  = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg))";
+		Pattern pattern = Pattern.compile(farmImageRegex );
 		Matcher matcher = pattern.matcher(farmimage);
 	
 		if (matcher.matches()) {

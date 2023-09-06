@@ -59,8 +59,8 @@ public class ProductValidator {
 		if (imageURL == null || "".equals(imageURL.trim())) {
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_ImageURL);
 		}
-		String PATTERN = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg))";
-		Pattern pattern = Pattern.compile(PATTERN); 
+		String imageurlregexpattern = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg))";
+		Pattern pattern = Pattern.compile(imageurlregexpattern); 
 		Matcher matcher = pattern.matcher(imageURL);
 		// If it matches the above pattern it will return true otherwise else will
 		// execute
@@ -114,8 +114,8 @@ public class ProductValidator {
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION);
 
 		}
-		String PATTERN = ".*";
-		Pattern pattern = Pattern.compile(PATTERN);
+		String descriptionregex = ".*";
+		Pattern pattern = Pattern.compile(descriptionregex);
 		Matcher matcher = pattern.matcher(description);
 
 		if (matcher.matches()) {

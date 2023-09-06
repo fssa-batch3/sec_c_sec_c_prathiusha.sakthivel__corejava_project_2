@@ -4,23 +4,16 @@ public class Seller {
 	//
 	// private data members
 	private String name;
-	private OwnershipType ownershiptype;
-	private Gender gender;
 	private String email;
 	private String address;
 	private String district;
 	private String state;
-	private int pincode;
-	private Category category;
-	private double squarefeet;
 	private String bankname;
 	private String branchname;
-	private String mentioned;
 	private String farmimage;
 	private String feedback;
 
-	public Seller(String name,OwnershipType ownershiptype,Gender gender, String email, String address, String district, String state, int pincode,
-			Category category, double squarefeet, String bankname, String branchname, String mentioned,
+	public Seller(String name, String email, String address, String district, String state, String bankname, String branchname, 
 			String farmimage, String feedback) {
 		super();
 		this.name = name;
@@ -28,11 +21,8 @@ public class Seller {
 		this.address = address;
 		this.district = district;
 		this.state = state;
-		this.pincode = pincode;
-		this.squarefeet = squarefeet;
 		this.bankname = bankname;
 		this.branchname = branchname;
-		this.mentioned = mentioned;
 		this.farmimage = farmimage;
 		this.feedback = feedback;
 	}
@@ -43,22 +33,6 @@ public class Seller {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public OwnershipType getOwnershiptype() {
-		return ownershiptype;
-	}
-
-	public void setOwnershiptype(OwnershipType ownershiptype) {
-		this.ownershiptype = ownershiptype;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
 	}
 
 	public String getEmail() {
@@ -93,36 +67,6 @@ public class Seller {
 		this.state = state;
 	}
 
-	public int getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(int pincode) {
-		this.pincode = pincode;
-	}
-	
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public Seller(OwnershipType ownershiptype, Gender gender) {
-		super();
-		this.ownershiptype = ownershiptype;
-		this.gender = gender;
-	}
-
-	public double getSquarefeet() {
-		return squarefeet;
-	}
-
-	public void setSquarefeet(double squarefeet) {
-		this.squarefeet = squarefeet;
-	}
-
 	public String getBankname() {
 		return bankname;
 	}
@@ -137,14 +81,6 @@ public class Seller {
 
 	public void setBranchname(String branchname) {
 		this.branchname = branchname;
-	}
-
-	public String getMentioned() {
-		return mentioned;
-	}
-
-	public void setMentioned(String mentioned) {
-		this.mentioned = mentioned;
 	}
 
 	public String getFarmimage() {
