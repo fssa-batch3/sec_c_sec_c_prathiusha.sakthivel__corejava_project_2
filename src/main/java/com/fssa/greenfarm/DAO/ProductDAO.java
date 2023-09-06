@@ -89,7 +89,7 @@ public class ProductDAO {
 
 				try (ResultSet rs = pst.executeQuery()) {
 
-					System.out.println(rs.getMetaData().getColumnName(1));
+					Logger.info(rs.getMetaData().getColumnName(1));
 
 					if (rs.next()) {
 

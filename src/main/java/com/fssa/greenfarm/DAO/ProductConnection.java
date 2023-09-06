@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.logger.Logger;
 
 public class ProductConnection {
 	private ProductConnection() {
@@ -31,7 +32,7 @@ public class ProductConnection {
 		try {//
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, userName, passWord);
-			System.out.println("Connection success");
+			Logger.info("Connection success");
 		} catch (Exception e) {
 			throw new DAOException("Unable to connect to the database");
 		}

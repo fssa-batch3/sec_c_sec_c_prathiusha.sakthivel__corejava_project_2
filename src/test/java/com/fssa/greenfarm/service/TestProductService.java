@@ -20,7 +20,7 @@ public class TestProductService {
 	@Test
 	void testAddProduct() {
 		// Create a sample product for testing
-		Product product = new Product("Tomato", 16,"https://iili.io/.jpg", 50, 2, 50,
+		Product product = new Product("Tomato", 17,"https://iili.io/.jpg", 50, 2, 50,
 				"It is good in vitamins and proteins and carbohydrates", "vegetable", LocalDate.of(2023, 07, 10));
 		ProductService productservice = new ProductService();
 
@@ -62,7 +62,7 @@ public class TestProductService {
 
 		ProductService productService = new ProductService();
 		return productService;
-
+	   
 	}
 
 	@Test
@@ -102,6 +102,8 @@ public class TestProductService {
 		for (Product ex : productList) {
 			Logger.info(ex);
 		}
+	       Assertions.assertFalse(productList.isEmpty());
+
 
 	}
 	
@@ -118,6 +120,7 @@ public class TestProductService {
        for (Product ex : productlist) {
 			Logger.info(ex);
 		}
+       Assertions.assertFalse(productlist.isEmpty());
 	}
 	
 
@@ -141,5 +144,6 @@ public class TestProductService {
 		for (Product e : productList) {
 			Logger.info(e);
 		}
+		Assertions.assertFalse(productList.isEmpty());
 	}
 }
