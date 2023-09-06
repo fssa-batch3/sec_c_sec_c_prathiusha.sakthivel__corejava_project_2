@@ -148,7 +148,7 @@ public class ProductDAO {
 
 	// method for searching the product and listing it according to its price range
 
-	public static List<Product> searchProductByName(Product product) throws SQLException, DAOException {
+	public static List<Product> searchProductByName(String product) throws SQLException, DAOException {
 
 		List<Product> searchproduct = new ArrayList<>();
 
@@ -159,7 +159,7 @@ public class ProductDAO {
 
 			try (PreparedStatement pst = connection.prepareStatement(query)) {
 
-				pst.setString(1, "%" + product.getName() + "%");
+				pst.setString(1, "%" + product+ "%");
 
 				try (ResultSet resultset = pst.executeQuery()) {
 

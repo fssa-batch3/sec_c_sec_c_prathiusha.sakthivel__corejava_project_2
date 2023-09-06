@@ -13,7 +13,8 @@ import com.fssa.greenfarm.validator.ProductValidator;
 public class ProductService {
 
 	// adding product
-	public boolean addProduct(Product product) throws SQLException, DAOException, ProductInvalidException {
+	public boolean addProduct(Product product)
+			throws SQLException, DAOException, ProductInvalidException {
 
 		if (ProductValidator.validate(product)) {
 
@@ -24,7 +25,8 @@ public class ProductService {
 	}
 
 	// updating product
-	public static boolean updateProduct(Product product) throws SQLException, ProductInvalidException, DAOException {
+	public static boolean updateProduct(Product product)
+			throws SQLException, ProductInvalidException, DAOException {
 
 		if (ProductValidator.validate(product)) {
 
@@ -34,7 +36,8 @@ public class ProductService {
 	}
 
 	// reading product
-	public static Product readProduct(int id) throws SQLException, ProductInvalidException, DAOException {
+	public static Product readProduct(int id)
+			throws SQLException, ProductInvalidException, DAOException {
 
 		if (ProductValidator.validateProductId(id)) {
 			return ProductDAO.readProduct(id);
@@ -43,7 +46,7 @@ public class ProductService {
 	}
 
 	// deleting product
-	public static boolean deleteProduct(int id, String name)
+	public static boolean deleteProduct(int id, String name) 
 			throws SQLException, ProductInvalidException, DAOException {
 
 		if (ProductValidator.validateProductId(id)) {
@@ -53,8 +56,9 @@ public class ProductService {
 		return false;
 	}
 
-	// searching product according to its price range
-	public List<Product> searchProductByName(Product product) throws SQLException, ProductInvalidException, DAOException {
+	// listing product by its name
+	public List<Product> searchProductByName(String product) 
+			throws SQLException, ProductInvalidException, DAOException {
 
 		ProductDAO productDao = new ProductDAO();
 		return ProductDAO.searchProductByName(product);
@@ -62,14 +66,15 @@ public class ProductService {
 	}
 
 	// reading all product
-
 	public List<Product> readAllProduct() throws SQLException, ProductInvalidException, DAOException {
 		ProductDAO productDao = new ProductDAO();
 		return ProductDAO.readAllProduct();
 
 	}
+	
 	// searching product according to its price range
-		public  List<Product> searchingPrice(double fromrange, double torange) throws SQLException, ProductInvalidException, DAOException {
+		public  List<Product> searchingPrice(double fromrange, double torange) 
+				throws SQLException, ProductInvalidException, DAOException {
 
 			ProductDAO productdao=new ProductDAO();
 			return ProductDAO.searchingPrice(fromrange, torange);

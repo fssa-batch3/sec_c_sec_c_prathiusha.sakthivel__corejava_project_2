@@ -44,7 +44,7 @@ public class TestProductService {
 		
 		Product product = new Product();
 		
-		product.setId(11);
+		product.setId(15);
 		product.setName("FreshOrganicCarrot");
 		product.setImageURL("https://iili.io/Hy0ZSZF.jpg");
 		product.setPrice(50);
@@ -77,7 +77,7 @@ public class TestProductService {
 	@Test
 	void testDeleteProduct() {
 		try {
-			Assertions.assertTrue(ProductService.deleteProduct(14, "Tomato"));
+			Assertions.assertTrue(ProductService.deleteProduct(15, "FreshOrganicCarrot"));
 		} catch (Exception e) {
 			Assertions.assertEquals("Error occurred while deleting the product.", e.getMessage());
 		}
@@ -97,8 +97,8 @@ public class TestProductService {
 		
 		ProductService productservice = new ProductService();
 		Product product= new Product();
-		product.setName("b");
-		List<Product> productList = productservice.searchProductByName(product);
+		product.setName("c");
+		List<Product> productList = productservice.searchProductByName(product.getName());
 		for (Product ex : productList) {
 			Logger.info(ex);
 		}
@@ -108,8 +108,8 @@ public class TestProductService {
     @Test
     void testSearchingPriceValidInput() throws SQLException, ProductInvalidException, DAOException {
       
-       int fromRange = 40;
-       int toRange = 100;
+       int fromRange = 49;
+       int toRange = 51;
        ProductService productservice = new ProductService();
        Product product = new Product();
        product.setPrice(fromRange);

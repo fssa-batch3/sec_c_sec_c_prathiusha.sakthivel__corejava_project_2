@@ -114,7 +114,7 @@ public class ProductValidator {
 			throw new ProductInvalidException(ProductValidatorErrors.INVALID_PRODUCT_DESCRIPTION);
 
 		}
-		String PATTERN = "^[a-zA-Z0-9 .,!?]+$";
+		String PATTERN = ".*";
 		Pattern pattern = Pattern.compile(PATTERN);
 		Matcher matcher = pattern.matcher(description);
 
