@@ -103,8 +103,6 @@ public class TestProductService {
 			Logger.info(ex);
 		}
 	       Assertions.assertFalse(productList.isEmpty());
-
-
 	}
 	
     @Test

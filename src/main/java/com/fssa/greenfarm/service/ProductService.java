@@ -29,7 +29,7 @@ public class ProductService {
 			throws SQLException, ProductInvalidException, DAOException {
 
 		if (ProductValidator.validate(product)) {
-
+ 
 			ProductDAO.updateProduct(product);
 		}
 		return true;
@@ -60,14 +60,12 @@ public class ProductService {
 	public List<Product> searchProductByName(String product) 
 			throws SQLException, ProductInvalidException, DAOException {
 
-		ProductDAO productDao = new ProductDAO();
 		return ProductDAO.searchProductByName(product);
 
 	}
 
 	// reading all product
 	public List<Product> readAllProduct() throws SQLException, ProductInvalidException, DAOException {
-		ProductDAO productDao = new ProductDAO();
 		return ProductDAO.readAllProduct();
 
 	}
@@ -76,7 +74,6 @@ public class ProductService {
 		public  List<Product> searchingPrice(double fromrange, double torange) 
 				throws SQLException, ProductInvalidException, DAOException {
 
-			ProductDAO productdao=new ProductDAO();
 			return ProductDAO.searchingPrice(fromrange, torange);
 		}
 

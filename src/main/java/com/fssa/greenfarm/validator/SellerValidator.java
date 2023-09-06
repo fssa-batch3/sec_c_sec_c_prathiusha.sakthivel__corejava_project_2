@@ -17,27 +17,18 @@ public class SellerValidator {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_SELLER_NULL);
 		}
 		validateName(seller.getName());
-		validateOwnershipType(seller.getOwnershiptype());
-		validateGender(seller.getGender());
 		validateEmail(seller.getEmail());
 		validateAddress(seller.getAddress());
 		validateDistrict(seller.getDistrict());
 		validateState(seller.getState());
-		validatePincode(seller.getPincode());
-		validateCategory(seller.getCategory());
-		vallidateSquarefeet(seller.getSquarefeet());
 		validateBankname(seller.getBankname());
 		validateBranchName(seller.getBranchname());
-		validateMentioned(seller.getMentioned());
 		validateFarmImage(seller.getFarmimage());
 		validateFeedback(seller.getFeedback());
 		return true;
 
 	}
-//
-	private static void validatePincode(int pincode) {
-		
-	}
+
 //
 	private static boolean validateName(String name) throws SellerInvalidException {
 		if (name == null || "".equals(name.trim()) || name.length() < 2) {
@@ -45,14 +36,7 @@ public class SellerValidator {
 		}
 		return true;
 	}
-//
-	private static void validateOwnershipType(OwnershipType ownershiptype) {
 
-	}
-//
-	private static void validateGender(Gender gender) {
-
-	}
 //
 	private static boolean validateEmail(String email) {
 		String emailregex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
@@ -94,27 +78,20 @@ public class SellerValidator {
 		return true;
 	}
 //
-	private static boolean validatePincode(String pincode) {
-		String pinCodeRegex = "^[0-9]{6}$";
-		Pattern pattern = Pattern.compile(pinCodeRegex);
-		Matcher matcher = pattern.matcher(pincode);
-		boolean isMatch = matcher.matches();
-
-		if (!isMatch) {
-			throw new IllegalArgumentException("The PIN code is invalid");
-		}
-
-		return true;
-
-	}
+//	private static boolean validatePincode(String pincode) {
+//		String pinCodeRegex = "^[0-9]{6}$";
+//		Pattern pattern = Pattern.compile(pinCodeRegex);
+//		Matcher matcher = pattern.matcher(pincode);
+//		boolean isMatch = matcher.matches();
 //
-	private static void validateCategory(Category category) {
-
-	}
+//		if (!isMatch) { 
+//			throw new IllegalArgumentException("The PIN code is invalid");
+//		}
 //
-	private static void vallidateSquarefeet(double squarefeet) {
+//		return true;
+//
+//	}
 
-	}
 //
 	private static boolean validateBankname(String bankname) throws SellerInvalidException {
 		if (bankname == null || "".equals(bankname.trim()) || bankname.length() < 2) {
@@ -130,12 +107,9 @@ public class SellerValidator {
 		}
 		return true;
 	}
-//
-	private static void validateMentioned(String mentioned) {
-		
 
-	}
 //
+	
 	private static boolean validateFarmImage(String farmimage) throws SellerInvalidException {
 		if (farmimage == null || "".equals(farmimage.trim())) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_FARMIMAGE);
