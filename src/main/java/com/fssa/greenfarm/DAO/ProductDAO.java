@@ -27,7 +27,7 @@ public class ProductDAO {
 		try (Connection connection = ProductConnection.getConnection()) {
 
 			String query = "insert into Product(product_name,product_id, product_imageUrl, product_price, product_quantity, product_percentage, product_description, product_category, product_createdDate) values (?,?,?,?,?,?,?,?,?)";
-
+ 
 			// Execute insert statement
 			try (PreparedStatement pst = connection.prepareStatement(query)) {
 				pst.setString(1, product.getName());

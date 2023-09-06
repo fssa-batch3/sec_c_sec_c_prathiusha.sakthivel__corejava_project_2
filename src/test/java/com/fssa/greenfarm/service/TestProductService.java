@@ -20,7 +20,7 @@ public class TestProductService {
 	@Test
 	void testAddProduct() {
 		// Create a sample product for testing
-		Product product = new Product("Tomato", 20,"https://iili.io/.jpg", 50, 2, 50,
+		Product product = new Product("Tomato", 13,"https://iili.io/.jpg", 50, 2, 50,
 				"It is good in vitamins and proteins and carbohydrates", "vegetable", LocalDate.of(2023, 07, 10));
 		ProductService productservice = new ProductService();
 
@@ -28,7 +28,7 @@ public class TestProductService {
 
 	}
 
-
+ 
 	@Test
 	void testInvalidAddProduct() {
 		// Create a sample product for testing
