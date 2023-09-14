@@ -20,14 +20,14 @@ public class TestProductService {
 	@Test
 	void testAddProduct() {
 		// Create a sample product for testing
-		Product product = new Product("Tomato", 21,"https://iili.io/.jpg", 50, 2, 50,
+		Product product = new Product("FreshorganicRadish", 13,"https://iili.io/J9lwBee.jpg", 50, 2, 50,
 				"It is good in vitamins and proteins and carbohydrates", "vegetable", LocalDate.of(2023, 07, 10));
 		ProductService productservice = new ProductService();
 
 		assertDoesNotThrow(() -> productservice.addProduct(product));
 
 	}
-
+ 
  
 	@Test
 	void testInvalidAddProduct() {

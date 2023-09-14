@@ -10,7 +10,7 @@ import com.fssa.greenfarm.exception.DAOException;
 import com.fssa.greenfarm.logger.Logger;
 
 public class ProductConnection {
-    private ProductConnection() {
+    ProductConnection() {
         // Private constructor to prevent instantiation
     }
 
@@ -31,6 +31,7 @@ public class ProductConnection {
         userName = System.getenv("DATABASE_USERNAME");
         passWord = System.getenv("DATABASE_PASSWORD");
         
+ 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, userName, passWord);

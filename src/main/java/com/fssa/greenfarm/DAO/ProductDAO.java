@@ -176,7 +176,7 @@ public class ProductDAO {
 						searchproductname.setCreateddate(resultset.getDate("product_createdDate").toLocalDate());
 						searchproduct.add(searchproductname);
 
-					}
+					} 
 
 				}
 			}

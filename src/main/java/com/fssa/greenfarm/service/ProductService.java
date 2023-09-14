@@ -19,8 +19,8 @@ public class ProductService {
 
 			ProductDAO.addProduct(product);
 			return true;
-		}
-		return false;
+		} 
+		return false; 
 	}
 
 	// updating product
@@ -65,7 +65,7 @@ public class ProductService {
 
 	// reading all product
 	public List<Product> readAllProduct() throws SQLException, DAOException {
-		return ProductDAO.readAllProduct();
+		return ProductDAO.readAllProduct(); 
 
 	}
 	
