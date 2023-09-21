@@ -18,10 +18,10 @@ public class UserDAO {
 	            psmt.setString(2, user.getLastname());
 	            psmt.setString(3, user.getEmail());
 	            psmt.setString(4, user.getPassword());
-
+  
 	            int rowsAffected = psmt.executeUpdate();
 	            return rowsAffected > 0;
-	        } catch (SQLException e) {
+	        } catch (SQLException e) { 
 	            // Handle any SQLException that may occur during PreparedStatement execution
 	            throw new DAOException("Error while executing the insert query: " + e.getMessage(), e);
 	        }
@@ -70,14 +70,6 @@ public class UserDAO {
 	    return false;
 	}
 
-
-	public static void main(String[] args) throws DAOException, SQLException {
-		UserDAO user = new UserDAO();
-		System.out.println(user.emailExists("prathiusha@gmail.com"));
-	}
-
-	
-	
 	
 	public boolean userLogin(String emailId, String password) throws DAOException, SQLException {
 		
@@ -103,13 +95,8 @@ public class UserDAO {
 		// Return false if no user with the given email and password was found
 		return false;
 	}
-	
-	
-	
-	
-	
-	
 
+	
 	public User getUserByEmail(String emailId) throws DAOException {
 
 		try (Connection connection = ProductConnection.getConnection()) {
@@ -123,11 +110,12 @@ public class UserDAO {
 						User user = new User();
 						user.setUser_id(rs.getInt("user_id"));
 						user.setFirstname(rs.getString("firstname"));
-						user.setFirstname(rs.getString("lastname"));
+						user.setLastname(rs.getString("lastname"));
 						user.setPassword(rs.getString("password"));
+						user.setEmail(emailId);
 						return user;
 					}
-				}
+				} 
 			}
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage());
@@ -152,5 +140,30 @@ public class UserDAO {
 		} catch (SQLException e) {
 			throw new DAOException("Error updating user profile: " + e.getMessage());
 		}
+	}
+	
+	public static int getUserIdByEmail(String email) throws DAOException {
+		int userId = -1; // Default value if the email is not found or an error occurs.
+
+		try (Connection con = ProductConnection.getConnection()) {
+			// SQL query to retrieve the user ID by email.
+			String query = "SELECT user_id FROM User WHERE email_id=?";
+
+			try (PreparedStatement psmt = con.prepareStatement(query)) {
+				
+				// Set the email parameter in the PreparedStatement.
+				psmt.setString(1, email);
+
+				try (ResultSet rs = psmt.executeQuery()) {
+					if (rs.next()) {
+						userId = rs.getInt("user_id");
+					}
+				}
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e.getMessage());
+		}
+
+		return userId;
 	}
 }

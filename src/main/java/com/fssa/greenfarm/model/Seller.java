@@ -1,47 +1,41 @@
 package com.fssa.greenfarm.model;
 
+import com.fssa.greenfarm.enums.Category;
+import com.fssa.greenfarm.enums.Gender;
+import com.fssa.greenfarm.enums.OwnershipType;
+
 public class Seller {
-	//
-	// private data members
-	private String name;
-	private String email;
-	private String address;
-	private String district;
-	private String state;
-	private String bankname;
-	private String branchname;
-	private String farmimage;
-	private String feedback;
+    private String name;
+    private OwnershipType ownershipType;
+    private Gender gender;
+    private String email;
+    private String address;
+    private String district;
+    private String state;
+    private String bankname;
+    private String branchname;
+    private Category category;
+    private String farmimage;
+    private String feedback;
 
-	public Seller(String name, String email, String address, String district, String state, String bankname, String branchname, 
-			String farmimage, String feedback) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.address = address;
-		this.district = district;
-		this.state = state;
-		this.bankname = bankname;
-		this.branchname = branchname;
-		this.farmimage = farmimage;
-		this.feedback = feedback;
+    public Seller(String name, String email, String address, String district, String state, String bankname, String branchname,
+                  Category category, String farmimage, String feedback) {
+        this.name = name;
+        this.email = email; 
+        this.address = address;
+        this.district = district;
+        this.state = state;
+        this.bankname = bankname;
+        this.branchname = branchname;
+        this.category = category;
+        this.farmimage = farmimage;
+        this.feedback = feedback;
+    }
+
+
+	public Seller() {
 	}
 
-	public String getName() {
-		return name;
-	} 
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getAddress() {
 		return address;
@@ -99,4 +93,60 @@ public class Seller {
 		this.feedback = feedback;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public OwnershipType getOwnershipType() {
+        return ownershipType;
+    }
+
+    public void setOwnershipType(OwnershipType ownershipType) {
+        this.ownershipType = ownershipType;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+
+	public void setCategory(String string) {
+		
+	}
+
+
+	public void setOwnershipType(String string) {
+		
+	}
+
+
+	public void setGender(String string) {
+		
+	}
+    
 }

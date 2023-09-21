@@ -14,61 +14,58 @@ import com.fssa.greenfarm.model.User;
 import com.google.protobuf.ServiceException;
 
 public class TestUserService {
-	  UserService userService = new UserService();
+	UserService userService = new UserService();
 
-	    private User getUser() {
-	        User user = new User();
-	        user.getFirstname();
-	        long nanoTime = System.nanoTime();
-	        user.getEmail();
-	        user.setPassword("TestP@123");
+	private User getUser() {
+		User user = new User();
+		user.getFirstname();
+		long nanoTime = System.nanoTime();
+		user.getEmail();
+		user.setPassword("TestP@123");
 
-	        return user;
-	    }
+		return user;
+	}
 
-	    @Test
-	    void testValidUserSignUp() {
-	        User user = getUser();
-	        user.setFirstname("Prathiusha");
-	        user.setLastname("sakthivel");
-	        user.setEmail("prathiusha@gmail.com");
-	        user.setPassword("Prathiusha@22");
-	        assertDoesNotThrow(() -> userService.userSignUp(user));
-	    }
+	@Test
+	void testValidUserSignUp() {
+		User user = getUser();
+		user.setFirstname("Prathiusha");
+		user.setLastname("sakthivel");
+		user.setEmail("prathiusha@gmail.com");
+		user.setPassword("Prathiusha@22");
+		assertDoesNotThrow(() -> userService.userSignUp(user));
+	}
 
-	    @Test
-	    void testUserSignUpInvalidUserFirstName() {
-	        User user = getUser();
-	        user.setFirstname("Pr");
-	        assertThrows(ServiceException.class, () -> userService.userSignUp(user));
-	    }
+	@Test
+	void testUserSignUpInvalidUserFirstName() {
+		User user = getUser();
+		user.setFirstname("Pr");
+		assertThrows(ServiceException.class, () -> userService.userSignUp(user));
+	}
 
-	    
+	@Test
+	void testValidUserLogin() throws ServiceException, InvalidUserDetailException, DAOException, SQLException {
 
-	    @Test
-	    void testValidUserLogin() throws ServiceException, InvalidUserDetailException, DAOException, SQLException {
-	    	
-	    	Assertions.assertTrue(userService.userLogin("prathiusha@gmail.com", "Prathiusha@22"));
-	    }
+		Assertions.assertTrue(userService.userLogin("prathiusha@gmail.com", "Prathiusha@22"));
+	}
 
-	    @Test
-	    void testUserLoginInvalidInput() {
-	        assertThrows(ServiceException.class, () -> userService.userLogin("", "weakPassword"));
-	    }
+	@Test
+	void testUserLoginInvalidInput() {
+		UserService userService = new UserService();
+		assertThrows(ServiceException.class, () -> { userService.userLogin("hfh", "weakPassword");
+		});
+	}
 
-	 
+	@Test
+	void testDeleteUserValidInput() {
 
-	    @Test
-	    void testDeleteUserValidInput() {
-	       
-	        assertDoesNotThrow(() -> userService.deleteUser("prathiusha@gmail.com"));
-	    }
+		assertDoesNotThrow(() -> userService.deleteUser("prathiusha@gmail.com"));
+	}
 
-	    @Test
-	    void testDeleteUserInvalidInput() {
-	        
-	        assertThrows(ServiceException.class, () -> userService.deleteUser("email@gmail.com"));
-	    }
+	@Test
+	void testDeleteUserInvalidInput() {
 
-	
+		assertThrows(ServiceException.class, () -> userService.deleteUser("email@gmail.com"));
+	}
+
 }

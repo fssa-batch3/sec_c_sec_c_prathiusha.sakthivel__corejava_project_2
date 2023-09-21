@@ -27,7 +27,7 @@ public class SellerValidator {
 	}
 
 //
-	private static boolean validateName(String name) throws SellerInvalidException {
+	public static boolean validateName(String name) throws SellerInvalidException {
 		if (name == null || "".equals(name.trim()) || name.length() < 2) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_NAME);
 		}
@@ -35,19 +35,22 @@ public class SellerValidator {
 	}
 
 //
-	private static boolean validateEmail(String email) {
+	public static boolean validateEmail(String email)throws SellerInvalidException  {
 	    String emailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 	    Pattern pattern = Pattern.compile(emailRegex);
 	    Matcher matcher = pattern.matcher(email);
 
 	    if (!matcher.matches()) {
-	        throw new IllegalArgumentException("The email is invalid");
+	        throw new SellerInvalidException("The email is invalid");
 	    }
-
 	    return true;
 	}
 //
-	private static boolean validateAddress(String address) {
+	
+	public static boolean validateAddress(String address) throws SellerInvalidException {
+		if(address == null || "".equals(address.trim())) {
+			throw new SellerInvalidException(SellerValidatorErrors.INVALID_ADDRESS);
+		}
 		String addressRegex = "^[a-zA-Z0-9 ,.'-]+$";
 		Pattern pattern = Pattern.compile(addressRegex);
 		Matcher matcher = pattern.matcher(address);
@@ -61,54 +64,80 @@ public class SellerValidator {
 
 	}
 //
-	private static boolean validateDistrict(String district) throws SellerInvalidException {
+	public static boolean validateDistrict(String district) throws SellerInvalidException {
 		if (district == null || "".equals(district.trim()) || district.length() < 2) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_DISTRICT);
 		}
+//		String districtregex = "^[A-Za-z]+$\r\n";
+//		Pattern pattern = Pattern.compile(districtregex);
+//		Matcher matcher = pattern.matcher(districtregex);
+//		boolean isMatch = matcher.matches();
+//		
+//		if(!isMatch) {
+//			throw new IllegalArgumentException("The District is invalid");
+//		}
 		return true;
 	}
 //
-	private static boolean validateState(String state) throws SellerInvalidException {
+	public static boolean validateState(String state) throws SellerInvalidException {
 		if (state == null || "".equals(state.trim()) || state.length() < 2) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_STATE);
 		}
+//		String stateregex = "^[A-Za-z]+$\r\n";
+//		Pattern pattern = Pattern.compile(stateregex);
+//		Matcher matcher = pattern.matcher(stateregex );
+//		boolean isMatch = matcher.matches();
+//		
+//		if(!isMatch) {
+//			throw new IllegalArgumentException("The State is invalid");
+//		}
 		return true;
 	}
 //
-	private static boolean validateBankname(String bankname) throws SellerInvalidException {
+	public static boolean validateBankname(String bankname) throws SellerInvalidException {
 		if (bankname == null || "".equals(bankname.trim()) || bankname.length() < 2) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_STATE);
 		}
+//		String banknameregex = "^[A-Za-z]+$\r\n";
+//		Pattern pattern = Pattern.compile(banknameregex);
+//		Matcher matcher = pattern.matcher(banknameregex );
+//		boolean isMatch = matcher.matches();
+//		
+//		if(!isMatch) {
+//			throw new IllegalArgumentException("The Bankname is invalid");
+//		}
 		return true;
 
 	}
 //
-	private static boolean validateBranchName(String branchname) throws SellerInvalidException {
+	public static boolean validateBranchName(String branchname) throws SellerInvalidException {
 		if (branchname == null || "".equals(branchname.trim()) || branchname.length() < 2) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_STATE);
 		}
+//		String bankbranchnameregex = "^[A-Za-z]+$\r\n";
+//		Pattern pattern = Pattern.compile(bankbranchnameregex);
+//		Matcher matcher = pattern.matcher(bankbranchnameregex );
+//		boolean isMatch = matcher.matches();
+//		
+//		if(!isMatch) {
+//			throw new IllegalArgumentException("The Branchname is invalid");
+//		}
 		return true;
 	}
 
 //
 	
-	private static boolean validateFarmImage(String farmimage) throws SellerInvalidException {
+	public static boolean validateFarmImage(String farmimage) throws SellerInvalidException {
 		if (farmimage == null || "".equals(farmimage.trim())) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_FARMIMAGE);
 		}
-		String farmImageRegex  = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg))";
-		Pattern pattern = Pattern.compile(farmImageRegex );
-		Matcher matcher = pattern.matcher(farmimage);
-	
-		if (matcher.matches()) {
-			return true;
-		} else {
-			throw new SellerInvalidException(SellerValidatorErrors.INVALID_FARMIMAGE);
-		}
-	}
+		return true;
+
+
+	} 
 //
-	private static boolean validateFeedback(String feedback) throws SellerInvalidException {
-		if (feedback == null || "".equals(feedback.trim()) || feedback.length() < 2) {
+	public static boolean validateFeedback(String feedback) throws SellerInvalidException {
+		if ( "".equals(feedback.trim()) || feedback.length() < 2) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_FEEDBACK);
 		}
 		return true;

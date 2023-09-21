@@ -19,7 +19,7 @@ public class UserValidator {
 
 		return true;
 	}
-
+ 
 	private static boolean validateUserFirstName(String firstname) throws InvalidUserDetailException {
 		firstname = firstname.trim();
 

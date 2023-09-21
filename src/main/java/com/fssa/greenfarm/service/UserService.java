@@ -25,7 +25,7 @@ public class UserService {
 	 
 	}
 
-
+ 
 	public boolean deleteUser(String emailId) throws ServiceException {
 	    try {
 	        if (!UserValidator.validateUserEmailId(emailId)) {

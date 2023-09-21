@@ -143,5 +143,13 @@ public class TestProductService {
 			Logger.info(e);
 		}
 		Assertions.assertFalse(productList.isEmpty());
+	} 
+
+	@Test
+	void testGetProductById() {
+		ProductService productservices = new ProductService();
+		
+		assertDoesNotThrow(() -> ProductService.getProductById(1));
 	}
+	
 }

@@ -75,6 +75,16 @@ public class ProductService {
 
 			return ProductDAO.searchingPrice(fromrange, torange);
 		}
+		
+		
+
+		public static Product getProductById(int id) throws DAOException, SQLException, ProductInvalidException {
+
+			if (ProductValidator.validateProductId(id)) {
+				return ProductDAO.getProductById(id);			}
+			return null;
+		
+		}
 
 
 }

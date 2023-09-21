@@ -27,7 +27,7 @@ public class ProductDAO {
 		try (Connection connection = ProductConnection.getConnection()) {
 
 			String query = "insert into Product(product_name,product_id, product_imageUrl, product_price, product_quantity, product_percentage, product_description, product_category, product_createdDate) values (?,?,?,?,?,?,?,?,?)";
- 
+
 			// Execute insert statement
 			try (PreparedStatement pst = connection.prepareStatement(query)) {
 				pst.setString(1, product.getName());
@@ -159,7 +159,7 @@ public class ProductDAO {
 
 			try (PreparedStatement pst = connection.prepareStatement(query)) {
 
-				pst.setString(1, "%" + product+ "%");
+				pst.setString(1, "%" + product + "%");
 
 				try (ResultSet resultset = pst.executeQuery()) {
 
@@ -176,7 +176,7 @@ public class ProductDAO {
 						searchproductname.setCreateddate(resultset.getDate("product_createdDate").toLocalDate());
 						searchproduct.add(searchproductname);
 
-					} 
+					}
 
 				}
 			}
@@ -256,7 +256,6 @@ public class ProductDAO {
 
 					}
 
-
 				} catch (SQLException e) {
 
 					Logger.info(e.getMessage());
@@ -269,5 +268,41 @@ public class ProductDAO {
 
 	}
 
+	public static Product getProductById(int id) throws DAOException, SQLException {
+
+		Product product = new Product();
+
+		try (Connection connection = ProductConnection.getConnection()) {
+			// Create update statement using task id
+
+			String query = "SELECT * FROM Product WHERE product_id = ? ";
+
+			try (PreparedStatement pst = connection.prepareStatement(query)) {
+
+				pst.setInt(1, id);
+
+				try (ResultSet rs = pst.executeQuery()) {
+
+					if (rs.next()) {
+
+						product.setName(rs.getString("product_name"));
+						product.setImageURL(rs.getString("product_imageUrl"));
+						product.setPrice(rs.getDouble("product_price"));
+						product.setQuantity(rs.getDouble("product_quantity"));
+						product.setPercentage(rs.getInt("product_percentage"));
+						product.setDescription(rs.getString("product_description"));
+						product.setCategory(rs.getString("product_category"));
+						product.setCreateddate(rs.getDate("product_createdDate").toLocalDate());
+						return product;
+					}
+
+				}
+			}
+		} catch (SQLException e) {
+			throw new DAOException("Error occurred", e);
+		}
+
+		return product;
+	}
 
 }

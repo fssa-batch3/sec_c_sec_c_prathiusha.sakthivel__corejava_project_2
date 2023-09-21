@@ -65,4 +65,8 @@ public class ProductConnection {
 
 		}
 	}
+    
+    public static void main(String[] args) throws DAOException {
+		ProductConnection.getConnection();
+	}
 }

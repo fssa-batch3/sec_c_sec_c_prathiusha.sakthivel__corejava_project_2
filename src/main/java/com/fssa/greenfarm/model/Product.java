@@ -14,6 +14,7 @@ public class Product {
 	private String description;
 	private String category;
 	private LocalDate createddate;
+	
 
 	// creating a constructor for the attribute
 	public Product(String name, int id, String imageURL, double price, double quantity, int percentage,
