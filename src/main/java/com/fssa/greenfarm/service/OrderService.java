@@ -32,5 +32,10 @@ public class OrderService {
 		return orderDao.getOrderById(orderId);
 
 	}
+	
+	public static boolean cancelOrder(int orderId) throws DAOException, SQLException {
+		
+		return OrderDAO.cancelOrder(orderId);
+		}
 
 }

@@ -14,7 +14,7 @@ public class OrderValidatorErrors {
 	
 	public static final String INVALID_STATE = "Invalid Order State";
 
-	public static final String INVALID_PINCODE = "Order Pincode Contains only 7 numbers not more than that and it doesnt include any letters or speacial characters";
+	public static final String INVALID_PINCODE = "Order Pincode Contains only 6 numbers not more than that and it doesnt include any letters or speacial characters";
 
 	public static final String INVALID_MOBILE_NUMBER = "Order Mobile Number  Contains only 10 numbers not more than that and it doesnt include any letters or speacial characters";
 

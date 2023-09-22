@@ -60,7 +60,7 @@ public class OrderValidator {
 	public static boolean validateOrderPincode(int pincode) throws InValidOrderDetailException {	
 		 String pincodeStr = String.valueOf(pincode);
 
-		    if (pincodeStr.length() == 7 && pincodeStr.matches("\\d+")) {
+		    if (pincodeStr.length() == 6 && pincodeStr.matches("\\d+")) {
 		        return true; //valid pincode
 		    } else {
 		        throw new InValidOrderDetailException(OrderValidatorErrors.INVALID_PINCODE);

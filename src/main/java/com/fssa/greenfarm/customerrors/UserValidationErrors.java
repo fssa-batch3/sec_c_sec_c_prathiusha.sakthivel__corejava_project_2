@@ -28,5 +28,19 @@ public class UserValidationErrors {
 	public static final String INVALID_USER_PASSWORD_PATTERN = "A valid password should meet the following criteria Have"
 			+ " at least 8 characters Contain at least one lowercase letter Contain at least one uppercase letter "
 			+ "Contain at least one digit Contain at least one special character";
+	
+	public static final String INVALID_USER_CITYNAME = "User cityname cannot be empty or null and does not contain number";
+	
+	public static final String INVALID_USER_STATENAME = "User statename cannot be empty or null and does not contain number";
+	
+	public static final String INVALID_PINCODE = "User Pincode Contains only 6 numbers not more than that and it doesnt include any letters or speacial characters";
+
+	public static final String INVALID_MOBILE_NUMBER = "User Mobile Number  Contains only 10 numbers not more than that and it doesnt include any letters or speacial characters";
+
+	public static final String INVALID_USER_ADDRESS = "Invalid User Address";
+
+	
+	
+
 
 }

@@ -23,7 +23,7 @@ public class OrderDAO {
 			String insertQuery = "INSERT INTO OrderDetails (address,city,state,pincode,mobile_number,payment_method,user_id) VALUES (?,?,?,?,?,?,?)";
 
 			try (PreparedStatement psmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
- 
+
 				psmt.setString(1, order.getAddress());
 				psmt.setString(2, order.getCity());
 				psmt.setString(3, order.getState());
@@ -33,9 +33,9 @@ public class OrderDAO {
 				psmt.setInt(7, order.getUser_id());
 
 				int rows = psmt.executeUpdate();
-				
-				System.out.println(rows + "row/rows affected"); 
-				
+
+				System.out.println(rows + "row/rows affected");
+
 				int orderId = 1;
 
 				try (ResultSet rs = psmt.getGeneratedKeys()) {
@@ -59,7 +59,6 @@ public class OrderDAO {
 		}
 
 	}
-	
 
 	public boolean placeOrderedProduct(List<OrderedProduct> orderedProducts, int orderId)
 			throws DAOException, SQLException {
@@ -70,7 +69,7 @@ public class OrderDAO {
 		try (Connection con = ProductConnection.getConnection()) {
 
 			for (OrderedProduct orderedProduct : orderedProducts) {
-				
+
 				String query = "INSERT INTO OrderedProduct (productId, productName, productPrice,productQuantity,productTotalAmount, order_id) VALUES (?, ?, ?,?,?,?)";
 
 				try (PreparedStatement pst = con.prepareStatement(query)) {
@@ -95,18 +94,16 @@ public class OrderDAO {
 		return true;
 
 	}
-	
-	
+
 	public ArrayList<Order> getOrderById(int userId) throws DAOException {
 		try (Connection connection = ProductConnection.getConnection()) {
 			String query = "SELECT * FROM `OrderDetails` WHERE user_id = ?";
 			try (PreparedStatement pst = connection.prepareStatement(query)) {
 				pst.setInt(1, userId);
 
-				
 				try (ResultSet resultSet = pst.executeQuery()) {
 					ArrayList<Order> orders = new ArrayList<Order>();
-					while(resultSet.next()) {
+					while (resultSet.next()) {
 						Order order = new Order();
 						order.setOrder_id(resultSet.getInt("order_id"));
 						order.setAddress(resultSet.getString("address"));
@@ -117,7 +114,7 @@ public class OrderDAO {
 						order.setPaymentmethod(PaymentMethod.CASHONDELIVERY);
 						order.setOrderedProducts(getOrderedProductsByOrderId(resultSet.getInt("order_id")));
 						orders.add(order);
-					
+
 					}
 					return orders;
 				}
@@ -126,7 +123,7 @@ public class OrderDAO {
 			e.printStackTrace();
 			throw new DAOException("error Occured");
 		}
-		
+
 	}
 
 	public ArrayList<OrderedProduct> getOrderedProductsByOrderId(int orderId) throws DAOException {
@@ -157,5 +154,20 @@ public class OrderDAO {
 
 	}
 
+	public static boolean cancelOrder(int orderId) throws DAOException {
+		String updateQuery = "UPDATE `OrderedProduct` SET status = 'false' WHERE order_id = ?";
 
+		try (Connection connection = ProductConnection.getConnection();
+
+			PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+			preparedStatement.setInt(1, orderId);
+			int rowsAffected = preparedStatement.executeUpdate();
+			System.out.println("order id : " + orderId + " is cancelled successfully");
+			return rowsAffected > 0; // Return true if the order was canceled successfully
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

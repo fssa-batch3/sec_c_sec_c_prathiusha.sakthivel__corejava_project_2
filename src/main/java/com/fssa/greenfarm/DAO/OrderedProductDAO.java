@@ -22,7 +22,7 @@ public class OrderedProductDAO {
 		try (Connection connection = ProductConnection.getConnection()) {
 
 			// creating select statement
-			String query = "SELECT * FROM `OrderDetails` WHERE order_id = ?";
+			String query = "SELECT * FROM OrderDetails WHERE `user_id` = ?";
 
 			try (PreparedStatement pst = connection.prepareStatement(query)) {
 				
@@ -47,6 +47,7 @@ public class OrderedProductDAO {
 				} catch (SQLException e) {
 
 					Logger.info(e.getMessage());
+					e.printStackTrace();
 					throw new SQLException("Error occurred.");
 
 				}
@@ -64,12 +65,12 @@ public class OrderedProductDAO {
 
 		try (Connection con = ProductConnection.getConnection()) {
 			// creating query
-			String query = "SELECT * FROM `OrderedProduct` where order_id=?";
+			String query = "SELECT * FROM OrderedProduct where order_id= ? ";
 
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
 				pst.setInt(1, orderId);
-				try (ResultSet rs = pst.executeQuery(query)) {
+				try (ResultSet rs = pst.executeQuery()) {
 
 					
 					while (rs.next()) {
@@ -85,6 +86,7 @@ public class OrderedProductDAO {
 				}
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new SQLException("Error while reading all product: " + e.getMessage());
 		}
 

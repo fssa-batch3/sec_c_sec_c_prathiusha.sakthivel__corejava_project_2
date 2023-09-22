@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.exception.InValidOrderDetailException;
 import com.fssa.greenfarm.exception.InvalidUserDetailException;
 import com.fssa.greenfarm.model.User;
 import com.google.protobuf.ServiceException;
@@ -68,4 +69,8 @@ public class TestUserService {
 		assertThrows(ServiceException.class, () -> userService.deleteUser("email@gmail.com"));
 	}
 
+	@Test
+	void testValidUpdateUser() throws InvalidUserDetailException, DAOException, InValidOrderDetailException {
+		Assertions.assertTrue(userService.updateUser());
+	}
 }

@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.logger.Logger;
 import com.fssa.greenfarm.model.User;
 
 public class UserDAO {
@@ -166,4 +168,37 @@ public class UserDAO {
 
 		return userId;
 	}
+	
+	
+	public boolean updateUserDetails(User user) throws DAOException {
+
+		try (Connection con = ProductConnection.getConnection()) {
+
+			final String query = "UPDATE User SET firstname = ?, lastname = ?, city = ?, state = ?, address = ?, pincode = ?, mobilenumber = ? WHERE user_id = ?";
+			
+			try (PreparedStatement pst = con.prepareStatement(query)) {
+
+				pst.setString(1, user.getFirstname());
+				pst.setString(2, user.getLastname());
+				pst.setString(3, user.getCity());
+				pst.setString(5, user.getState());
+				pst.setString(6, user.getAddress());
+				pst.setInt(7, user.getPincode());
+				pst.setLong(8, user.getMobilenumber());
+				
+				pst.setInt(9, user.getUser_id());
+				pst.executeUpdate();
+
+				Logger.info("User Details Updated Successfully");
+				
+			}
+
+		} catch (SQLException ex) {
+			throw new DAOException("Update User Details Method Is Failded");
+		}
+
+		return true;
+
+	}
+	
 }

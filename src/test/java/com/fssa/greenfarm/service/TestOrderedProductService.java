@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.model.Order;
 import com.fssa.greenfarm.model.OrderedProduct;
 
 public class TestOrderedProductService {
@@ -16,9 +17,9 @@ public class TestOrderedProductService {
 
 		OrderedProductService orderedproductservices = new OrderedProductService();
 		
-		List<OrderedProduct> productList = orderedproductservices.getOrderById(4);
+		List<Order> productList = orderedproductservices.getOrderById(4);
 		
-		   for (OrderedProduct product : productList) {
+		   for (Order product : productList) {
 			   
 		        System.out.println(product.toString()); 
 		        

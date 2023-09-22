@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import com.fssa.greenfarm.DAO.UserDAO;
 import com.fssa.greenfarm.exception.DAOException;
+import com.fssa.greenfarm.exception.InValidOrderDetailException;
 import com.fssa.greenfarm.exception.InvalidUserDetailException;
 import com.fssa.greenfarm.model.User;
 import com.fssa.greenfarm.validator.UserValidator;
@@ -12,6 +13,7 @@ import com.google.protobuf.ServiceException;
 public class UserService {
 	
 	UserDAO userDAO = new UserDAO();
+	private User user;
 
 	public boolean userSignUp(User user) throws ServiceException {
 	    try {
@@ -84,5 +86,16 @@ public class UserService {
 		}
 		return false;
 	}
+	
+
+	public boolean updateUser() throws  DAOException, InvalidUserDetailException, InValidOrderDetailException {
+
+		if (new UserValidator().validateUser(user) && new UserValidator().validateUserId(user.getUser_id()) && new UserValidator().validateAddressDetails(user)) {
+			new UserDAO().updateUserDetails(user);
+		} 
+		return true;
+
+	}
+	
 	
 }
