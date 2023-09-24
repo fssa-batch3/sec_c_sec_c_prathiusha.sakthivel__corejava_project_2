@@ -2,6 +2,7 @@ package com.fssa.greenfarm.model;
 
 import java.util.List;
 
+import com.fssa.greenfarm.enums.OrderStatus;
 import com.fssa.greenfarm.enums.PaymentMethod;
 
 
@@ -12,12 +13,20 @@ public class Order {
 	private int order_id;
 	private String address;
 	private String city;
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
+	}
+
 	private String state;
 	private int pincode;
 	private long mobile_number;
     private PaymentMethod paymentmethod; 
 	private List<OrderedProduct> orderedProducts; 
-	private boolean orderstatus;
+	private OrderStatus status;
     
 	public List<OrderedProduct> getOrderedProducts() {
 		return orderedProducts;
@@ -27,13 +36,6 @@ public class Order {
 		this.orderedProducts = orderedProducts;
 	}
 
-	public boolean isOrderstatus() {
-		return orderstatus;
-	}
-
-	public void setOrderstatus(boolean orderstatus) {
-		this.orderstatus = orderstatus;
-	}
 
 	public Order(int product_id,int user_id, int order_id, String address, String city, String state, int pincode, long mobile_number,
 			PaymentMethod paymentmethod) {
@@ -115,6 +117,14 @@ public class Order {
 		this.mobile_number = mobile_number;
 	}
 
+	@Override
+	public String toString() {
+		return "Order [product_id=" + product_id + ", user_id=" + user_id + ", order_id=" + order_id + ", address="
+				+ address + ", city=" + city + ", state=" + state + ", pincode=" + pincode + ", mobile_number="
+				+ mobile_number + ", paymentmethod=" + paymentmethod + ", orderedProducts=" + orderedProducts
+				+ ", status=" + status + "]";
+	}
+
 	public PaymentMethod getPaymentmethod() {
 		return paymentmethod;
 	}
@@ -123,12 +133,4 @@ public class Order {
 		this.paymentmethod = paymentmethod;
 	}
 
-	@Override
-	public String toString() {
-		return "Order [product_id=" + product_id + ", user_id=" + user_id + ", order_id=" + order_id + ", address="
-				+ address + ", city=" + city + ", state=" + state + ", pincode=" + pincode + ", mobile_number="
-				+ mobile_number + ", paymentmethod=" + paymentmethod + ", orderedProducts=" + orderedProducts
-				+ ", orderstatus=" + orderstatus + "]";
-	}
-	
 }
