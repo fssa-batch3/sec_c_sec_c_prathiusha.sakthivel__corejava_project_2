@@ -6,6 +6,8 @@ public class OrderedProduct {
 	private String productname;
 	private double productPrice;
 	private double quantity;
+	
+	private int status;
  
     
 	public OrderedProduct(int productId, String productname, double productPrice, double quantity, double totalAmount) {
@@ -61,5 +63,16 @@ public class OrderedProduct {
 	}
 
 	private double totalAmount;
+
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
+	
 
 }

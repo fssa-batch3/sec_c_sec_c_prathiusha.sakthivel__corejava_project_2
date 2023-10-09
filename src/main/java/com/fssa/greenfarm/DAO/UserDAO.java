@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.fssa.greenfarm.exception.DAOException;
 import com.fssa.greenfarm.logger.Logger;
@@ -173,31 +172,33 @@ public class UserDAO {
 	public boolean updateUserDetails(User user) throws DAOException {
 
 		try (Connection con = ProductConnection.getConnection()) {
+			
+			System.out.print("in dao");
 
-			final String query = "UPDATE User SET firstname = ?, lastname = ?, city = ?, state = ?, address = ?, pincode = ?, mobilenumber = ? WHERE user_id = ?";
+			final String query = "UPDATE User SET address=?, city=?, state=?, pincode=?, mobilenumber=? WHERE email_id=?";
 			
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
-				pst.setString(1, user.getFirstname());
-				pst.setString(2, user.getLastname());
-				pst.setString(3, user.getCity());
-				pst.setString(5, user.getState());
-				pst.setString(6, user.getAddress());
-				pst.setInt(7, user.getPincode());
-				pst.setLong(8, user.getMobilenumber());
+				pst.setString(1, user.getAddress());
+				pst.setString(2, user.getCity());
+				pst.setString(3, user.getState());
+				pst.setInt(4, user.getPincode());
+				pst.setLong(5, user.getMobilenumber());
+				pst.setString(6, user.getEmail());
+				int rs = pst.executeUpdate();
 				
-				pst.setInt(9, user.getUser_id());
-				pst.executeUpdate();
-
-				Logger.info("User Details Updated Successfully");
-				
+				if (rs > 0) {
+				    Logger.info("User Details Updated Successfully");
+				    return true;
+				} else {
+				    Logger.info("User Details Update Failed");
+				    return false;
+				}
 			}
 
 		} catch (SQLException ex) {
-			throw new DAOException("Update User Details Method Is Failded");
+			throw new DAOException("Update User Details Method Is Failed " + ex.getMessage());
 		}
-
-		return true;
 
 	}
 	

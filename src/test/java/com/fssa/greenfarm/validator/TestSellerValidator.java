@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.greenfarm.customerrors.SellerValidatorErrors;
-import com.fssa.greenfarm.exception.InvalidUserDetailException;
 import com.fssa.greenfarm.exception.SellerInvalidException;
 
 public class TestSellerValidator {

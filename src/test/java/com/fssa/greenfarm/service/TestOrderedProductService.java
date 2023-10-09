@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import com.fssa.greenfarm.exception.DAOException;
 import com.fssa.greenfarm.model.Order;
-import com.fssa.greenfarm.model.OrderedProduct;
 
 public class TestOrderedProductService {
 	

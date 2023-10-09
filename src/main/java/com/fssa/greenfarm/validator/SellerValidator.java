@@ -136,6 +136,8 @@ public class SellerValidator {
 
 	} 
 //
+	
+	
 	public static boolean validateFeedback(String feedback) throws SellerInvalidException {
 		if ( "".equals(feedback.trim()) || feedback.length() < 2) {
 			throw new SellerInvalidException(SellerValidatorErrors.INVALID_FEEDBACK);

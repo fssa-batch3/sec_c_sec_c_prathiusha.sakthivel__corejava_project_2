@@ -80,6 +80,7 @@ public class OrderedProductDAO {
 						productorder.setProductPrice(rs.getDouble("productPrice"));
 						productorder.setQuantity(rs.getDouble("productQuantity"));
 						productorder.setTotalAmount(rs.getDouble("productTotalAmount"));
+						productorder.setStatus(rs.getInt("status"));
 						productList.add(productorder);
 					}
 

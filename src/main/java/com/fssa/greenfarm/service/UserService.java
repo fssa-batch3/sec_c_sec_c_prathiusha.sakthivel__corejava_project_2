@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import com.fssa.greenfarm.DAO.UserDAO;
 import com.fssa.greenfarm.exception.DAOException;
-import com.fssa.greenfarm.exception.InValidOrderDetailException;
 import com.fssa.greenfarm.exception.InvalidUserDetailException;
 import com.fssa.greenfarm.model.User;
 import com.fssa.greenfarm.validator.UserValidator;
@@ -88,14 +87,18 @@ public class UserService {
 	}
 	
 
-	public boolean updateUser() throws  DAOException, InvalidUserDetailException, InValidOrderDetailException {
-
-		if (new UserValidator().validateUser(user) && new UserValidator().validateUserId(user.getUser_id()) && new UserValidator().validateAddressDetails(user)) {
-			new UserDAO().updateUserDetails(user);
-		} 
-		return true;
-
-	}
+	public boolean updateUserDetails(User user) throws ServiceException, DAOException {
+		
+		System.out.print("in service layer");
+		 if (userDAO.emailExists(user.getEmail())) 
+			 return userDAO.updateUserDetails(user);
+		return false;
+			
+		    
+	        
 	
+	 
+	}
+
 	
 }
