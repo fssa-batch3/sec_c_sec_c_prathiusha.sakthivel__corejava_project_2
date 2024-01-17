@@ -1,5 +1,6 @@
 package com.fssa.greenfarm.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fssa.greenfarm.enums.OrderStatus;
@@ -7,14 +8,25 @@ import com.fssa.greenfarm.enums.PaymentMethod;
 
 
 public class Order {
-    
+ 
 	private int product_id;
 	private int user_id;
 	private int order_id;
 	private String address;
 	private String city;
+	private LocalDate orderdate;
+	
+	public LocalDate getOrderdate() {
+		return orderdate;
+	}
+
+	public void setOrderdate(LocalDate orderdate) {
+		this.orderdate = orderdate;
+	}
+
 	public OrderStatus getStatus() {
 		return status;
+		
 	}
 
 	public void setStatus(OrderStatus status) {
@@ -120,9 +132,9 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [product_id=" + product_id + ", user_id=" + user_id + ", order_id=" + order_id + ", address="
-				+ address + ", city=" + city + ", state=" + state + ", pincode=" + pincode + ", mobile_number="
-				+ mobile_number + ", paymentmethod=" + paymentmethod + ", orderedProducts=" + orderedProducts
-				+ ", status=" + status + "]";
+				+ address + ", city=" + city + ", orderdate=" + orderdate + ", state=" + state + ", pincode=" + pincode
+				+ ", mobile_number=" + mobile_number + ", paymentmethod=" + paymentmethod + ", orderedProducts="
+				+ orderedProducts + ", status=" + status + "]";
 	}
 
 	public PaymentMethod getPaymentmethod() {
@@ -132,5 +144,6 @@ public class Order {
 	public void setPaymentmethod(PaymentMethod paymentmethod) {
 		this.paymentmethod = paymentmethod;
 	}
+
 
 }

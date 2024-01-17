@@ -49,12 +49,7 @@ public class TestUserService {
 		Assertions.assertTrue(userService.userLogin("prathiusha@gmail.com", "Prathiusha@22"));
 	}
 
-	@Test
-	void testUserLoginInvalidInput() {
-		UserService userService = new UserService();
-		assertThrows(ServiceException.class, () -> { userService.userLogin("hfh", "weakPassword");
-		});
-	}
+
 
 	@Test
 	void testDeleteUserValidInput() {

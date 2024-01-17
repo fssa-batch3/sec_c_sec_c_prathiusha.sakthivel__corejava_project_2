@@ -102,7 +102,7 @@ public class UserDAO {
 
 		try (Connection connection = ProductConnection.getConnection()) {
 
-			String selectQuery = "SELECT user_id, firstname, lastname, password FROM User WHERE email_id = ?";
+			String selectQuery = "SELECT user_id, firstname, lastname, password,city,state,address,pincode,mobilenumber FROM User WHERE email_id = ?";
 			try (PreparedStatement psmt = connection.prepareStatement(selectQuery)) {
 				psmt.setString(1, emailId);
 
@@ -113,6 +113,11 @@ public class UserDAO {
 						user.setFirstname(rs.getString("firstname"));
 						user.setLastname(rs.getString("lastname"));
 						user.setPassword(rs.getString("password"));
+						user.setCity(rs.getString("city"));
+						user.setState(rs.getString("state"));
+						user.setAddress(rs.getString("address"));
+						user.setPincode(rs.getInt("pincode"));;
+						user.setMobilenumber(rs.getLong("mobilenumber"));
 						user.setEmail(emailId);
 						return user;
 					}

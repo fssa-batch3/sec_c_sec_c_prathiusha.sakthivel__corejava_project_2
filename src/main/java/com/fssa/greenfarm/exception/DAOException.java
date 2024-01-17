@@ -1,18 +1,18 @@
 package com.fssa.greenfarm.exception;
 
 public class DAOException extends Exception {
-	   
-		private static final long serialVersionUID = 2L;
 
-		public DAOException(String msg) {
-			super(msg); 
-		}
+	private static final long serialVersionUID = 2L;
 
-		public DAOException(Throwable te) {
-			super(te);
-		} 
+	public DAOException(String msg) {
+		super(msg);
+	}
 
-		public DAOException(String msg, Throwable te) {
-			super(msg, te);
-		}
+	public DAOException(Throwable te) {
+		super(te);
+	}
+
+	public DAOException(String msg, Throwable te) {
+		super(msg, te);
+	}
 }

@@ -120,7 +120,7 @@ public class TestOrderValidator {
 	
 	@Test
 	public void testValidateOrderPincodeValid() throws InValidOrderDetailException {
-	    int validPincode = 1234567;
+	    int validPincode = 123456;
 	    assertTrue(OrderValidator.validateOrderPincode(validPincode));
 	}
 	

@@ -284,7 +284,8 @@ public class ProductDAO {
 				try (ResultSet rs = pst.executeQuery()) {
 
 					if (rs.next()) {
-
+						
+						product.setId(rs.getInt("product_id"));
 						product.setName(rs.getString("product_name"));
 						product.setImageURL(rs.getString("product_imageUrl"));
 						product.setPrice(rs.getDouble("product_price"));

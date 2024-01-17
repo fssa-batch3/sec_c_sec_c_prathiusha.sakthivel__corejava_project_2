@@ -37,11 +37,11 @@ public class TestOrderService {
 
 		productsList.add(product1);
 		 
-		order.setUser_id(1); 
-		order.setAddress("15th cross anna nagar");
+		order.setUser_id(4); 
+		order.setAddress("123 Main Street, Apt. 4B");
 		order.setCity("chennai");
 		order.setState("Tamilnadu"); 
-		order.setPincode(1234567);
+		order.setPincode(123456);
 		order.setMobile_number(1234567890);
 		order.setPaymentmethod(PaymentMethod.CASHONDELIVERY);
 		

@@ -1,10 +1,13 @@
 package com.fssa.greenfarm.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +23,7 @@ public class OrderDAO {
 
 		try (Connection connection = ProductConnection.getConnection()) {
 
-			String insertQuery = "INSERT INTO OrderDetails (address,city,state,pincode,mobile_number,payment_method,user_id) VALUES (?,?,?,?,?,?,?)";
+			String insertQuery = "INSERT INTO OrderDetails (address,city,state,pincode,mobile_number,payment_method,orderdate,user_id) VALUES (?,?,?,?,?,?,?,?)";
 
 			try (PreparedStatement psmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -30,8 +33,8 @@ public class OrderDAO {
 				psmt.setInt(4, order.getPincode());
 				psmt.setLong(5, order.getMobile_number());
 				psmt.setString(6, order.getPaymentmethod() + "");
-				psmt.setInt(7, order.getUser_id());
-
+				psmt.setDate(7, Date.valueOf(LocalDate.now()));
+				psmt.setInt(8, order.getUser_id());
 				int rows = psmt.executeUpdate();
 
 				System.out.println(rows + "row/rows affected");
@@ -39,22 +42,22 @@ public class OrderDAO {
 				int orderId = 1;
 
 				try (ResultSet rs = psmt.getGeneratedKeys()) {
+					
 					if (rs.next()) {
 						orderId = rs.getInt(1);
 						System.out.println("order_id" + orderId);
 					}
 
 				}
+				
 				placeOrderedProduct(order.getOrderedProducts(), orderId);
 
 				return true;
 
 			} catch (SQLException e) {
-				// Handle any SQLException that may occur during PreparedStatement execution
 				throw new DAOException("Error while executing the insert query: " + e.getMessage(), e);
 			}
 		} catch (SQLException e) {
-			// Handle any SQLException that may occur during database connection
 			throw new DAOException("Error while connecting to the database: " + e.getMessage(), e);
 		}
 
@@ -155,6 +158,7 @@ public class OrderDAO {
 	}
 
 	public static boolean cancelOrder(int orderId) throws DAOException {
+		
 		String updateQuery = "UPDATE `OrderedProduct` SET status = '0' WHERE order_id = ?";
 
 		try (Connection connection = ProductConnection.getConnection();

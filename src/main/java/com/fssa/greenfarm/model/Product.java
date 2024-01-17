@@ -11,9 +11,10 @@ public class Product {
 	private double price;
 	private double quantity;
 	private int percentage;
-	private String description; 
+	private String description;
 	private String category;
 	private LocalDate createddate;
+	
 
 	// creating a constructor for the attribute
 	public Product(String name, int id, String imageURL, double price, double quantity, int percentage,
@@ -31,7 +32,7 @@ public class Product {
 	}
 
 	public Product(String productName, int i, String string, int j, double d, String string2, String string3) {
-	}
+ }
 
 	public Product() {
 	}
@@ -108,5 +109,14 @@ public class Product {
 	public void setCreateddate(LocalDate createddate) {
 		this.createddate = createddate;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [name=" + name + ", id=" + id + ", imageURL=" + imageURL + ", price=" + price + ", quantity="
+				+ quantity + ", percentage=" + percentage + ", description=" + description + ", category=" + category
+				+ ", createddate=" + createddate + "]";
+	}
+	
+	
 
 }

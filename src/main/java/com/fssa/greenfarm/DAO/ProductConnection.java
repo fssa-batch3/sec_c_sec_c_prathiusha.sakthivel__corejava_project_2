@@ -36,7 +36,7 @@ public class ProductConnection {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, userName, passWord);
-			Logger.info("Connection success");
+//			Logger.info("Connection success");
 
 		} catch (Exception e) {
 			e.printStackTrace();
