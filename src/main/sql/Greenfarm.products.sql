@@ -1,6 +1,4 @@
---use greenfarm;
---SELECT * FROM greenfarm.product;
---
+--1.Product Table
 --CREATE TABLE product (
 --    ProductId int AUTO_INCREMENT PRIMARY KEY,
 --    ProductName varchar(50) NOT NULL,
@@ -12,34 +10,68 @@
 --    ProductCategory varchar(10) NOT NULL,
 --    ProductCreatedDate date NOT NULL
 --);
---
 
---insert into  product(ProductName,ProductImageUrl,ProductPrice,ProductQuantity,ProductPercentage,ProductDescription,ProductCategory,ProductCreatedDate)
---values 
---("FreshorganicTomato","https://iili.io/HyRNkxf.jpg",20,2,50,'It is good in vitamins and proteins',"vegetables","2023-07-22" ),
---("FreshorganicBeetroot","https://iili.io/HyROWLx.jpg",45,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicPotato","https://iili.io/HyRve7S.jpg",30,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicKohlrabi","https://iili.io/HyR83vI.jpg",28,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicBrinjal","https://iili.io/HyR8YZu.jpg",30,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicBittergourd","https://iili.io/Hy0Q6eS.jpg",45,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicBroadbeans","https://iili.io/Hy0Qbrx.jpg",50,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicBeans","https://iili.io/Hy0Zqrv.jpg",35,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicCabbage","https://iili.io/Hy0ZThX.png",25,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicBrocholi","https://iili.io/Hy0ZcYl.jpg",85,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicCarrot","https://iili.io/Hy0ZSZF.jpg",65,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" ),
---("FreshorganicRaddish","https://iili.io/Hy0Zy6G.jpg",55,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" );
 
----- serching a product
----- select * from Product where ProductPrice Between 20 AND 30;
 
---select * from product;
+--2.User Table
+--CREATE TABLE `User` (
+--  `user_id` int NOT NULL AUTO_INCREMENT,
+--  `firstname` varchar(255) NOT NULL,
+--  `lastname` varchar(255) NOT NULL,
+--  `email_id` varchar(255) NOT NULL,
+--  `password` varchar(255) NOT NULL,
+--  `city` varchar(50) DEFAULT NULL,
+--  `state` varchar(30) DEFAULT NULL,
+--  `address` varchar(300) DEFAULT NULL,
+--  `pincode` int DEFAULT NULL,
+--  `mobilenumber` mediumtext,
+--  `is_active` tinyint(1) DEFAULT '1',
+--  PRIMARY KEY (`user_id`),
+--  UNIQUE KEY `email_id` (`email_id`)
+--) 
 
---desc product;
 
---deleting a product
---DELETE FROM Product WHERE ProductName = "FreshorganicRaddish" AND ProductId =12; 
 
---adding a product
----- insert into Product(ProductName, ProductImageUrl, ProductPrice, ProductQuantity, ProductPercentage, ProductDescription, ProductCategory, ProductCreatedDate) 
----- value
----- ("FreshorganicRaddish","https://iili.io/Hy0Zy6G.jpg",55,1,50,'It is good in vitamins and proteins',"vegetables","2023-07-20" );
+--3.OrderDetails Table
+--CREATE TABLE `OrderDetails` (
+--  `order_id` int NOT NULL AUTO_INCREMENT,
+--  `user_id` int DEFAULT NULL,
+--  `address` varchar(300) DEFAULT NULL,
+--  `city` varchar(50) DEFAULT NULL,
+--  `state` varchar(50) DEFAULT NULL,
+--  `pincode` char(7) DEFAULT NULL,
+--  `mobile_number` char(10) DEFAULT NULL,
+--  `payment_method` varchar(50) DEFAULT NULL,
+--  `orderdate` date NOT NULL,
+--  PRIMARY KEY (`order_id`)
+--)
+
+
+
+--4.OrderedProduct Table
+--CREATE TABLE `OrderedProduct` (
+--  `order_id` int DEFAULT NULL,
+--  `productId` int DEFAULT NULL,
+--  `productName` varchar(50) DEFAULT NULL,
+--  `productPrice` double DEFAULT NULL,
+--  `productQuantity` double DEFAULT NULL,
+--  `productTotalAmount` double DEFAULT NULL,
+--  `status` tinyint(1) DEFAULT '1'
+--) 
+
+
+
+--5.CartItems Table
+--CREATE TABLE `CartItems` (
+--  `cart_id` int NOT NULL AUTO_INCREMENT,
+--  `user_id` int NOT NULL,
+--  `product_id` int NOT NULL,
+--  `totalprice` float NOT NULL,
+--  `quantity` float NOT NULL,
+--  `status` int DEFAULT '1',
+--  PRIMARY KEY (`cart_id`),
+--  UNIQUE KEY `cart_id_UNIQUE` (`cart_id`),
+--  UNIQUE KEY `product_id_UNIQUE` (`product_id`),
+--  KEY `CartItems_ibfk_1` (`user_id`),
+--  CONSTRAINT `CartItems_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`)
+--)
