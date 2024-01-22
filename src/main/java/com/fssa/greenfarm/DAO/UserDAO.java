@@ -179,7 +179,6 @@ public class UserDAO {
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 			
-			System.out.print("in dao");
 
 			final String query = "UPDATE User SET address=?, city=?, state=?, pincode=?, mobilenumber=? WHERE email_id=?";
 			
