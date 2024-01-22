@@ -1,14 +1,14 @@
 DB TABLE
 
-| Column Name         | Data Type         | Constraints             |
-|---------------------|-------------------|-------------------------|
-| ProductId           | SERIAL            | PRIMARY KEY             |
-| ProductName         | VARCHAR(50)       |                         |
-| ProductImageUrl     | VARCHAR(200)      |                         |
-| ProductPrice        | double(10, 2)     | CHECK (>= 10)           |
-| ProductQuantity     | double(10, 2)     | CHECK (>= 0)            |
-| ProductPercentage   | INT               | CHECK (>= 0 AND <= 100) |
-| ProductDescription  | VARCHAR(800)      |                         |
-| ProductCategory     | VARCHAR(10)       |                         |
-| ProductCreateddate  | DATE              | CHECK (<= CURRENT_DATE) |
+| Product      | Data Type         | Constraints             |
+|--------------|-------------------|-------------------------|
+| Id           | SERIAL            | PRIMARY KEY             |
+| Name         | VARCHAR(50)       |                         |
+| ImageUrl     | VARCHAR(200)      |                         |
+| Price        | double(10, 2)     | CHECK (>= 10)           |
+| Quantity     | double(10, 2)     | CHECK (>= 0)            |
+| Percentage   | INT               | CHECK (>= 0 AND <= 100) |
+| Description  | VARCHAR(800)      |                         |
+| Category     | VARCHAR(10)       |                         |
+| Createddate  | DATE              | CHECK (<= CURRENT_DATE) |
 
